@@ -438,7 +438,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
@@ -546,10 +545,6 @@ pre.rouge .mo {
 pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
   color: #009999;
 }
-pre.rouge .sa {
-  color: #000000;
-  font-weight: bold;
-}
 pre.rouge .sb {
   color: #d14;
 }
@@ -583,7 +578,7 @@ pre.rouge .s1 {
 pre.rouge .ss {
   color: #990073;
 }
-pre.rouge .s, pre.rouge .dl {
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
   color: #d14;
 }
 pre.rouge .na {
@@ -655,7 +650,7 @@ pre.rouge {
 }
 </style>
 </head>
-<body class="article">
+<body class="book">
 <div id="header">
 <h1>Introducción a Infraestructura como Código (IaC)</h1>
 <div class="details">
@@ -691,18 +686,11 @@ pre.rouge {
 <li><a href="#_características">Características</a></li>
 <li><a href="#_casos_de_uso">Casos de uso</a></li>
 <li><a href="#_instalación_de_terraform">Instalación de <em>Terraform</em></a></li>
-<li><a href="#_contrucción_de_infraestructura">Contrucción de Infraestructura</a></li>
+<li><a href="#_instalación_con_homebrew_en_macos">Instalación con <em>Homebrew</em> en <em>MacOS</em></a></li>
+<li><a href="#_instalación_con_chocolatey_en_windows">Instalación con <em>Chocolatey</em> en <em>Windows</em></a></li>
+<li><a href="#_instalación_en_linux">Instalación en Linux</a></li>
 </ul>
 </li>
-<li><a href="#_capítulo_4_introducción_a_packer">Capítulo 4. Introducción a Packer</a>
-<ul class="sectlevel2">
-<li><a href="#_características_2">Características</a></li>
-<li><a href="#_casos_de_uso_2">Casos de uso</a></li>
-<li><a href="#_instalación_de_packer">Instalación de <em>Packer</em></a></li>
-<li><a href="#_contrucción_de_imágenes">Contrucción de Imágenes</a></li>
-</ul>
-</li>
-<li><a href="#_creación_y_configuración_de_una_cuenta_de_amazon_web_services">Apéndice A: Creación y configuración de una cuenta de <em>Amazon Web Services</em></a></li>
 </ul>
 </div>
 </div>
@@ -871,20 +859,6 @@ pre.rouge {
 <div class="paragraph">
 <p>Algunas de las características más importantes de <em>Terraform</em> son:</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Algunos</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -978,8 +952,9 @@ pre.rouge {
 <p>En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el <code>PATH</code> en <em>Windows</em> através de la interfaz gráfica: <code><a href="https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows" class="bare">https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows</a></code></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_instalación_con_homebrew_en_macos">Instalación con <em>Homebrew</em> en <em>MacOS</em></h4>
+</div>
+<div class="sect2">
+<h3 id="_instalación_con_homebrew_en_macos">Instalación con <em>Homebrew</em> en <em>MacOS</em></h3>
 <div class="paragraph">
 <p><em>Homebrew</em> es un manejador de paquetes de fuente abierta para el sistema operativo <em>MacOS</em>. Instala la <em>formula</em> oficial de <em>Terraform</em> desde la terminal.</p>
 </div>
@@ -1008,8 +983,8 @@ pre.rouge {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_instalación_con_chocolatey_en_windows">Instalación con <em>Chocolatey</em> en <em>Windows</em></h4>
+<div class="sect2">
+<h3 id="_instalación_con_chocolatey_en_windows">Instalación con <em>Chocolatey</em> en <em>Windows</em></h3>
 <div class="paragraph">
 <p><em>Chocolatey</em> es un manejador de paquetes de codigo abierto para <em>Windows</em>. Installamos el paquete de <em>Terraform</em> desde la linea de comandos.</p>
 </div>
@@ -1019,10 +994,10 @@ pre.rouge {
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_instalación_en_linux">Instalación en Linux</h3>
 <div class="sect3">
-<h4 id="_instalación_en_linux">Instalación en Linux</h4>
-<div class="sect4">
-<h5 id="_ubuntudebian">Ubuntu/Debian</h5>
+<h4 id="_ubuntudebian">Ubuntu/Debian</h4>
 <div class="paragraph">
 <p>Agregamos la llave <em>GPG</em> de <em>HashiCorp</em>.</p>
 </div>
@@ -1048,8 +1023,8 @@ pre.rouge {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_centosrhel">CentOS/RHEL</h5>
+<div class="sect3">
+<h4 id="_centosrhel">CentOS/RHEL</h4>
 <div class="paragraph">
 <p>Instalamos <code>yum-config-manager</code> para manejar repositorios.</p>
 </div>
@@ -1063,7 +1038,7 @@ pre.rouge {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">yum</span><span class="na">-config-manager --add-repo </span><span class="kd">https</span>://rpm.releases.hashicorp.com/RHEL/hashicorp.repo</code></pre>
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">yum</span><span class="na">-config-manager </span><span class="o">-</span><span class="na">-add-repo </span><span class="kd">https</span>://rpm.releases.hashicorp.com/RHEL/hashicorp.repo</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1075,366 +1050,6 @@ pre.rouge {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_fedora">Fedora</h5>
-<div class="paragraph">
-<p>Instalamos <code>dnf config-manager</code> para manejar repositorios.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">dnf</span> <span class="kd">install</span> <span class="na">-y </span><span class="kd">dnf</span><span class="na">-plugins-core</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Usamos <code>dnf config-manager</code> para agregar el repositorio oficial de <em>HachiCorp</em> para <em>Linux</em></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">dnf</span> <span class="kd">config</span><span class="na">-manager --add-repo </span><span class="kd">https</span>://rpm.releases.hashicorp.com/fedora/hashicorp.repo</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Instalamos</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">dnf</span> <span class="na">-y </span><span class="kd">install</span> <span class="kd">terraform</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_verificación_de_la_instalación">Verificación de la instalación.</h4>
-<div class="paragraph">
-<p>Para verificar la instalación abrimos una nueva terminal y ejecutamos <code>terraform -help</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="batch"><span class="kd">terraform</span> <span class="na">-help
-</span><span class="kd">Usage</span>: <span class="kd">terraform</span> <span class="o">[</span><span class="kd">global</span> <span class="kd">options</span><span class="o">]</span> <span class="o">&lt;</span><span class="kd">subcommand</span><span class="o">&gt;</span> <span class="o">[</span><span class="kd">args</span><span class="o">]</span>
-
-<span class="kd">The</span> <span class="kd">available</span> <span class="kd">commands</span> <span class="k">for</span> <span class="kd">execution</span> <span class="kd">are</span> <span class="kd">listed</span> <span class="kd">below</span>.
-<span class="kd">The</span> <span class="kd">primary</span> <span class="kd">workflow</span> <span class="kd">commands</span> <span class="kd">are</span> <span class="kd">given</span> <span class="kd">first</span><span class="o">,</span> <span class="kd">followed</span> <span class="kd">by</span>
-<span class="kd">less</span> <span class="kd">common</span> <span class="kd">or</span> <span class="nb">more</span> <span class="kd">advanced</span> <span class="kd">commands</span>.
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Cualquier sub comando despues de <code>terraform -help</code> permite aprender más sobre el mismo.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="batch"><span class="kd">terraform</span> <span class="na">-help </span><span class="kd">plan</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Con esto finalizamos la instalación de <em>Terraform</em> y estamos listos para empezar a construir infraestructura como código.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_contrucción_de_infraestructura">Contrucción de Infraestructura</h3>
-<div class="paragraph">
-<p>Con <em>Terraform</em> installado, estamos listos para crear nuestra primera infraestructura.</p>
-</div>
-<div class="paragraph">
-<p>Vamos a aprovisionar una <strong><em>Amazon Machine Image (AMI)</em></strong> en <strong><em>AWS</em></strong> esto lo haremos de esta manera, dado de las <em>AMIs</em> son muy populares.</p>
-</div>
-<div class="sect3">
-<h4 id="_pre_requisitos">Pre requisitos</h4>
-<div class="paragraph">
-<p>Para continuar, necesitamos:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Una cuenta de <em>AWS</em></p>
-</li>
-<li>
-<p>La intefaz de Linea de comando de <em>AWS</em></p>
-</li>
-<li>
-<p>Las credenciales de <em>AWS</em> configuradas localmente</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Esto está descrito en el Apéndice <a href="#">Creación y configuración de una cuenta de Amazon Web Services</a></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_escribir_configuraciones">Escribir configuraciones</h4>
-<div class="paragraph">
-<p>El set de archivos que es usado para describir la infraestructura en <em>Terraform</em> es conocido como <em>Terraform Configuration</em>. Vamos a escribir nuestra primera configuración ahora para lanzar una instancia de <em>EC2 de AWS</em>.</p>
-</div>
-<div class="paragraph">
-<p>Cada configuración debe estar en su propio directorio. Crearemos un directorio para esta nueva configuración.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">mkdir </span>iac-libro-aws-instancia</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nos cambiamos al directorio recién creado</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd </span>iac-libro-aws-instancia</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Pegamos la configuración que está a continuación dentro de un archivo que tenga por nombre <code>ejemplo.tf</code> y lo guardamos. <em>Terraform</em> carga todos los archivos en el directorio actual que tengan la extención <code>.tf</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash">terraform <span class="o">{</span>
-  required_providers <span class="o">{</span>
-    aws <span class="o">=</span> <span class="o">{</span>
-      <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"hashicorp/aws"</span>
-      version <span class="o">=</span> <span class="s2">"~&gt; 2.70"</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-provider <span class="s2">"aws"</span> <span class="o">{</span>
-  profile <span class="o">=</span> <span class="s2">"default"</span>
-  region  <span class="o">=</span> <span class="s2">"us-west-2"</span>
-<span class="o">}</span>
-
-resource <span class="s2">"aws_instance"</span> <span class="s2">"ejemplo"</span> <span class="o">{</span>
-  ami           <span class="o">=</span> <span class="s2">"ami-830c94e3"</span>
-  instance_type <span class="o">=</span> <span class="s2">"t2.micro"</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Esta es una configuración completa de <em>Terraform</em> y está lista para ser aplicada. En las siguientes secciones, veremos como funciona cada uno de estos bloques en más detalle.</p>
-</div>
-<div class="sect4">
-<h5 id="_bloques_de_terraform">Bloques de <em>Terraform</em></h5>
-<div class="paragraph">
-<p>El bloque <code>terraform {}</code> es requerido para que <em>Terraform</em> conosca qué proveedor tiene que descargar desde el registro de <em>Terraform</em>. En la condiguración anterior, el proveedor <code>aws</code> está definido como <code>hashicorp/aws</code> que es una abreviación de <code>redistry.terraform.io/hashicorp/aws</code>.</p>
-</div>
-<div class="paragraph">
-<p>También podemos asignar una versión definida en el bloque <code>required_providers</code>. El argumento <code>version</code> es opcional, pero recomendado.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_proveedores">Proveedores</h5>
-<div class="paragraph">
-<p>El bloque <code>provider</code> configura el nombre del proveedor, en nuestro caso <code>aws</code>, que es responsable de crear y manejar los recursos. Un proveedor es un <em>plugin</em> que <em>Terraform</em> usa para traducir las interacciones con las <em>API</em> del servicio a administrar. Un proveedor es el responsable por entender tales interacciones y exponer los recursos. Por el hecho de que <em>Terraform</em> puede interactuar con cualquier <em>API</em>, podemos representar casi cualquier tipo de infraestructura como recursos en <em>Terraform</em>.</p>
-</div>
-<div class="paragraph">
-<p>El atributo <code>profile</code> en nuestro bloque de proveedor se refiere, en este caso, a las credenciales de <em>AWS</em> almacenadas en la el archivo de configuración de <em>AWS</em>, que se creo cuando se hizo la configuración del <em>CLI</em> de <em>AWS</em>. La mejor práctica recomendada, es que no se use credenciales directamente en los archivos <code>.tf</code>.</p>
-</div>
-<div class="paragraph">
-<p>Pueden existir multiples bloques de proveedor en caso de ser necesario. Podemos, incluso, usar multiples proveedores juntos. Por ejemplo podemos pasar el identificador de una intancia de <em>AWS</em> para monitorear tal recurso con <em>DataDog</em>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_recursos">Recursos</h5>
-<div class="paragraph">
-<p>El bloque de <code>resources</code> define una pieza de la infraestructura. Un recurso puede er un componente físico o virtual como una instancia de <em>EC2</em> o puede ser un recurso lógico como una <em>IP elástica</em>.</p>
-</div>
-<div class="paragraph">
-<p>El bloque de recursos tiene dos entradas antes del bloque como tal: el tipo de recurso y el nombre del recurso. en este ejemplo, el tipo de recurso es <code>aws_instance</code> y el nombre es <code>ejemplo</code>. El prefijo en el tipo de recurso se mapea al proveedor. En nuestro caso <code>aws_instance</code> automaticamente le dice a <em>Terraform</em> que este serña manejado por el proveedor <em>aws</em></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_capítulo_4_introducción_a_packer">Capítulo 4. Introducción a Packer</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Packer también forma parte del stack de <strong><em>Hashicorp</em></strong>. Este nos permite crear imágenes de máquinas idénticas, para múltiples plataformas de destino desde una única fuente de configuración lo que facilita la gestión de la configuración y el aprovisionamiento de la infraestructura. Packer es relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, se pueden crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado.</p>
-</div>
-<div class="paragraph">
-<p>Una imagen de máquina es una unidad estática que contiene un sistema operativo preconfigurado y un software instalado. Podemos usar imágenes para clonar o crear nuevos hosts. Las imágenes ayudan a acelerar el proceso de construcción y despliegue de nueva infraestructura. Estas existen en muchos formatos, específicos para diversas plataformas y entornos de implementación.</p>
-</div>
-<div class="paragraph">
-<p>Packer es compatible con Linux, Windows y Mac OS X. También es compatible con una amplia variedad de formatos de imagen cmo Amazon EC2, CloudStack, DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox, VMware y más. También cuenta con integraciones para otras herramientas, como <strong><em>Ansible</em></strong> y <strong><em>Vagrant</em></strong>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Código Ejemplo de plantilla de Packer para crear una imagen para AWS</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
-    </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"aws_access_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{env `AWS_ACCESS_KEY_ID`}}"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"aws_secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{env `AWS_SECRET_ACCESS_KEY`}}"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"region"</span><span class="p">:</span><span class="w">         </span><span class="s2">"us-east-1"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"builders"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="nl">"access_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_access_key`}}"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"ami_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"packer-aws-image-{{timestamp}}"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"instance_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t3.micro"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ap-south-1"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_secret_key`}}"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"source_ami_filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"virtualization-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hvm"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ubuntu/images/*ubuntu-xenial-20.04-amd64-server-*"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"root-device-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ebs"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nl">"owners"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1239720102247"</span><span class="p">],</span><span class="w">
-         </span><span class="nl">"most_recent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"ssh_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ubuntu"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"amazon-ebs"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"provisioners"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"../scripts/setup.sh"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_características_2">Características</h3>
-<div class="paragraph">
-<p>Algunas de las características más importantes de <em>Packer</em> son:</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Algunos</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Rápido despliegue de infraestructura:</strong> Las imágenes de Packer  permiten lanzar máquinas completamente configuradas y aprovisionadas en segundos. Esto beneficia también a los ambientes de desarrollo, ya que se pueden crear Boxes de Vagrant con Packer, aprovisionadas de la misma manera que en producción, lo que mantiene la paridad.</p>
-</li>
-<li>
-<p><strong>Detección de problemas anticipada</strong>. Packer instala y configura  el software de una máquina en el momento en que se crea la imagen. Si hay errores en este proceso, se detectarán a tiempo en las fases de construcción de un flujo o <em>pipeline</em> de CI/CD en lugar de descubrirlos cuando inicie el entorno.</p>
-</li>
-<li>
-<p><strong>Basado en constructores para múltiples formatos de imagen:</strong> Los constructores o <em>builders</em> leen la configuración y la usan para ejecutar y generar una imagen de máquina virtual. Son constructores: VirtualBox, VMware y Amazon EC2 y más. <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>. Los constructores son el equivalente a los proveedores de Terraform.</p>
-</li>
-<li>
-<p><strong>Portabilidad de entornos:</strong>. Ya que Packer puede crear imágenes idénticas para múltiples plataformas,es posible ejecutar el entorno de producción en AWS,el entorno de  QA en una nube privada como OpenStack y los entornos de desarrolloen Vagrant.</p>
-</li>
-<li>
-<p><strong>Soporte para multiples aprovisionadores:</strong> Los <em>provisioners</em>  son componentes de Packer que instalan y configuran software dentro de una máquina antes de que esta se convierta en una imagen estática. Realizan el trabajo principal de hacer que la imagen contenga software útil. Los aprovisionadores de ejemplo incluyen scripts de shell, Ansible, etc. <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnotedef_6" title="View footnote.">6</a>]</sup></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_casos_de_uso_2">Casos de uso</h3>
-<div class="paragraph">
-<p>Construir imágenes es tedioso. Es normalmente un proceso manual por lo tanto es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con herramientas de gestión de condiguraciones como Ansible. Packer permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.</p>
-</div>
-<div class="paragraph">
-<p>Estos son casos de uso aplicados en la industria: <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup></p>
-</div>
-<div class="sect3">
-<h4 id="_consistencia_ambiental">Consistencia ambiental</h4>
-<div class="paragraph">
-<p>¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, staging y producción? Packer es ideal para estandarizar esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas.</p>
-</div>
-<div class="paragraph">
-<p>Por ejemplo, un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el “hardening” de base que para imponer estándares entre equipos.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_entrega_continua">Entrega continua</h4>
-<div class="paragraph">
-<p>Packer se integra bien con las herramientas de infraestructura existentes. Se puede agregar en un pipeline de implementación. Es decir, parte del pipeline será crear la imagen. Un ejemplo de esto es la fase Bake de Spinnaker <sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="View footnote.">8</a>]</sup>.</p>
-</div>
-<div class="paragraph">
-<p>Packer puede crear imagenes de Amazon Machine Images (AMI), después Terraform puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar Ansible ( periódicamente) para proporcionar la configuración final y mantener nuestros hosts configurados correctamente.</p>
-</div>
-<div class="paragraph">
-<p>Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host que no funciona correctamente, el proceso es rápido y consistente. Nuestra infraestructura se vuelve desechable, reemplazable y repetible. Es decir, manejamos un enfoque de infraestructura inmutable.</p>
-</div>
-<div class="paragraph">
-<p>Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_instalación_de_packer">Instalación de <em>Packer</em></h3>
-<div class="paragraph">
-<p><strong><em>TODO</em></strong></p>
-</div>
-<div class="sect3">
-<h4 id="_verificación_de_la_instalación_2">Verificación de la instalación.</h4>
-<div class="paragraph">
-<p><strong><em>TODO</em></strong></p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_contrucción_de_imágenes">Contrucción de Imágenes</h3>
-<div class="paragraph">
-<p>Con <em>Packer</em> installado, estamos listos para crear nuestra primer imagen.</p>
-</div>
-<div class="paragraph">
-<p>Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: constructores, aprovisionadores y postprocesamiento.</p>
-</div>
-<div class="paragraph">
-<p>Los constructores es lo que determina qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para AWS en formato AMI o una para Virtualbox en formato OVF.</p>
-</div>
-<div class="paragraph">
-<p>No estamos limitados a un solo constructor. Si necesitamos una imagen idéntica para usarla en AWS y Vagrant, definimos varios constructores.</p>
-</div>
-<div class="paragraph">
-<p>Los aprovisionadores son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema.</p>
-</div>
-<div class="paragraph">
-<p>Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos hasta el uso de playbooks de Ansible.Lo importante para mantener un enfoque DevOps es usar los mismos scripts que usamos en un servidor de producción pero aplicados a un  entorno de desarrollo local con Vagrant. De esta manera el entorno de Desarrollo y Producción mantendrán paridad.</p>
-</div>
-<div class="paragraph">
-<p>Por último, están los postprocesadores. Estos son opcionales. Por ejemplo, son necesarios para crear boxes de Vagrant. Estas  se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.</p>
-</div>
-<div class="sect3">
-<h4 id="_pre_requisitos_2">Pre requisitos</h4>
-<div class="paragraph">
-<p>Para continuar, necesitamos:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Una cuenta de <em>AWS</em></p>
-</li>
-<li>
-<p>La intefaz de Linea de comando de <em>AWS</em></p>
-</li>
-<li>
-<p>Las credenciales de <em>AWS</em> configuradas localmente</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Esto está descrito en el Apéndice <a href="#">Creación y configuración de una cuenta de Amazon Web Services</a></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_escribir_plantillas_de_packer">Escribir plantillas de Packer</h4>
-<div class="paragraph">
-<p><strong><em>TODO</em></strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creación_y_configuración_de_una_cuenta_de_amazon_web_services">Apéndice A: Creación y configuración de una cuenta de <em>Amazon Web Services</em></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>TODO</p>
 </div>
 </div>
 </div>
@@ -1453,23 +1068,11 @@ resource <span class="s2">"aws_instance"</span> <span class="s2">"ejemplo"</span
 <div class="footnote" id="_footnotedef_4">
 <a href="#_footnoteref_4">4</a>. <a href="https://www.terraform.io/downloads.html" class="bare">https://www.terraform.io/downloads.html</a>
 </div>
-<div class="footnote" id="_footnotedef_5">
-<a href="#_footnoteref_5">5</a>. <a href="https://www.packer.io/docs/builders" class="bare">https://www.packer.io/docs/builders</a>
-</div>
-<div class="footnote" id="_footnotedef_6">
-<a href="#_footnoteref_6">6</a>. <a href="https://www.packer.io/docs/provisioners" class="bare">https://www.packer.io/docs/provisioners</a>
-</div>
-<div class="footnote" id="_footnotedef_7">
-<a href="#_footnoteref_7">7</a>. <a href="https://www.packer.io/intro/use-cases" class="bare">https://www.packer.io/intro/use-cases</a>
-</div>
-<div class="footnote" id="_footnotedef_8">
-<a href="#_footnoteref_8">8</a>. <a href="https://spinnaker.io/setup/bakery/#packer-templates" class="bare">https://spinnaker.io/setup/bakery/#packer-templates</a>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-02-05 15:19:08 -0600
+Last updated 2021-02-04 22:23:58 -0600
 </div>
 </div>
 </body>
