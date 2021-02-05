@@ -1,0 +1,14 @@
+== Capítulo 2. Caso de estudio.
+
+Através de este libro, estaremos creando los bloques necesarios para mantener la operación de una aplicación mantenida en la nube, la cual cuenta con varios elementos de infraestructura que definiremos como código. La idea de este caso de estudio, será que podamos desplegar esta aplicación, modificarla, escalarla, decomisarla, cambiarla de una región a otra, etc.
+
+El casó de estudio será de la empresa imaginaría de repostería "Galletería Carlota" la cual mantiene su sistema de tienda en linea en la *_Amazon Web Service_* o *_AWS_* como le llamaremos de aquí en adelante. La aplicación tienen varias capas o niveles como se muestra en la siguiente figura, esta será la arquitectura propuesta para la aplicación. El cual cuenta con lo siguiente:
+
+* Tres (3) Balanceador de Carga nativo de _AWS_ para la capas de presentación, aplicación y base de datos.
+* Una capa de presentación _web_ que permite ser escalada verticalmente
+* Las imágenes de los productos a vender serán almacenadas en un _S3 Bucket_
+* Una capa de Aplicación que será donde se procese la logíca de negocio la cual tambien debe ser verticalmente escalable
+* Una capa de Base de datos, la cual es nativa a la nube y permite ser escalada verticalmente, en este caso usaremos _CoackroachDB_
+
+
+image::imagenes/App-Arch-Aws.png[]
