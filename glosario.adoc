@@ -1,0 +1,7 @@
+[glossary]
+== Glosario
+
+[glossary]
+
+AWS:: Amazon Web Services
+

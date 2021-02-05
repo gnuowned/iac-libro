@@ -45,3 +45,4 @@ include::cap004.adoc[]
 
 include::apendice001.adoc[]
 
+include::glosario.adoc[]
