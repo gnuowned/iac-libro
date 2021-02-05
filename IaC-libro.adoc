@@ -6,7 +6,9 @@ v1.0, 2021
 :homepage: https://iac-libro.org
 :figure-caption: Imagen
 :source-highlighter: rouge
-:icons:
+:icons: font
+:appendix-caption: Apéndice
+:sourcedir: ./ejercicios
 
 [dedication]
 == Dedicación
@@ -38,4 +40,6 @@ include::cap001.adoc[]
 include::cap002.adoc[]
 
 include::cap003.adoc[]
+
+include::apendice001.adoc[]
 

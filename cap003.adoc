@@ -30,6 +30,11 @@ variable "availability_zone" {
 
 Algunas de las características más importantes de _Terraform_ son:
 
+[WARNING]
+====
+Algunos
+====
+
 * *Archivos de Configuración Declarativa:* Definición de Infraestructura como código para manejar el ciclo de vida completo, creación de nuevos recursos, manejo de los existentes así como la decomisación cuando estos ya no son necesarios.
 * *Modulos instalables:* Intalación automática de modulos de la comunidad o terceros desde el registro de _Hashicorp_ por medio de `terraform init`.
 * *Planeación y predicción de cambios:* _Terraform_ permite a los operadores hacer cambios a la infraestructura de manera segura y predectible.
@@ -80,7 +85,7 @@ mv ~/Downloads/terraform /usr/local/bin/
 
 En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica: `https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
 
-=== Instalación con _Homebrew_ en _MacOS_
+==== Instalación con _Homebrew_ en _MacOS_
 
 _Homebrew_ es un manejador de paquetes de fuente abierta para el sistema operativo _MacOS_. Instala la _formula_ oficial de _Terraform_ desde la terminal.
 
@@ -105,7 +110,7 @@ Para actualizar a la última versión, ejecutamos:
 brew upgrade hashicorp/tap/terraform
 ----
 
-=== Instalación con _Chocolatey_ en _Windows_
+==== Instalación con _Chocolatey_ en _Windows_
 
 _Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_. Installamos el paquete de _Terraform_ desde la linea de comandos.
 
@@ -115,9 +120,9 @@ choco install terraform
 ----
 
 
-=== Instalación en Linux
+==== Instalación en Linux
 
-==== Ubuntu/Debian
+===== Ubuntu/Debian
 
 Agregamos la llave _GPG_ de _HashiCorp_.
 
@@ -140,7 +145,7 @@ Actualización e instalación.
 sudo apt-get update && sudo apt-get install terraform
 ----
 
-==== CentOS/RHEL
+===== CentOS/RHEL
 
 Instalamos `yum-config-manager` para manejar repositorios.
 
@@ -163,5 +168,100 @@ Instalamos
 sudo yum -y install terraform
 ----
 
+===== Fedora
+
+Instalamos `dnf config-manager` para manejar repositorios.
+
+[source,batch]
+----
+sudo dnf install -y dnf-plugins-core
+----
+
+Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+
+[source,batch]
+----
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+----
+
+Instalamos
+
+[source,batch]
+----
+sudo dnf -y install terraform
+----
+
+==== Verificación de la instalación.
+
+Para verificar la instalación abrimos una nueva terminal y ejecutamos `terraform -help`
+
+[source,batch]
+----
+terraform -help
+Usage: terraform [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+The primary workflow commands are given first, followed by
+less common or more advanced commands.
+...
+----
+
+Cualquier sub comando despues de `terraform -help` permite aprender más sobre el mismo.
+
+[source,batch]
+----
+terraform -help plan
+----
+
+Con esto finalizamos la instalación de _Terraform_ y estamos listos para empezar a construir infraestructura como código.
+
+=== Contrucción de Infraestructura
+
+Con _Terraform_ installado, estamos listos para crear nuestra primera infraestructura.
+
+Vamos a aprovisionar una *_Amazon Machine Image (AMI)_* en *_AWS_* esto lo haremos de esta manera, dado de las _AMIs_ son muy populares.
+
+==== Pre requisitos
+
+Para continuar, necesitamos:
+
+* Una cuenta de _AWS_
+* La intefaz de Linea de comando de _AWS_
+* Las credenciales de _AWS_ configuradas localmente
+
+Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y configuración de una cuenta de Amazon Web Services]
+
+==== Escribir configuraciones
+
+El set de archivos que es usado para describir la infraestructura en _Terraform_ es conocido como _Terraform Configuration_. Vamos a escribir nuestra primera configuración ahora para lanzar una instancia de _EC2 de AWS_.
+
+Cada configuración debe estar en su propio directorio. Crearemos un directorio para esta nueva configuración.
+
+[source,bash]
+----
+mkdir iac-libro-aws-instancia
+----
+
+Nos cambiamos al directorio recién creado
+[source,bash]
+----
+cd iac-libro-aws-instancia
+----
+
+Pegamos la configuración que está a continuación dentro de un archivo que tenga por nombre `ejemplo.tf` y lo guardamos. _Terraform_ carga todos los archivos en el directorio actual que tengan la extención `.tf`
+
+
+[source,bash]
+----
+include::{sourcedir}/cap003/ejemplo.tf[]
+----
+
+Esta es una configuración completa de _Terraform_ y está lista para ser aplicada. En las siguientes secciones, veremos como funciona cada uno de estos bloques en más detalle.
+
+===== Bloques de _Terraform_
+
+El bloque `terraform {}` es requerido para que _Terraform_ conosca qué proveedor tiene que descargar desde el registro de _Terraform_. En la condiguración anterior, el proveedor `aws` está definido como `hashicorp/aws` que es una abreviación de `redistry.terraform.io/hashicorp/aws`.
+
+También podemos asignar una versión definida en el bloque `required_providers`. El argumento `version` es opcional, pero recomendado.
 
 
