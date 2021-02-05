@@ -10,5 +10,5 @@ El casó de estudio será de la empresa imaginaría de repostería "Galletería 
 * Una capa de Aplicación que será donde se procese la logíca de negocio la cual tambien debe ser verticalmente escalable
 * Una capa de Base de datos, la cual es nativa a la nube y permite ser escalada verticalmente, en este caso usaremos _CoackroachDB_
 
-
+.Arquitectura de la Aplicación en AWS
 image::imagenes/App-Arch-Aws.png[]

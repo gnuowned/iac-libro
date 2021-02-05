@@ -4,8 +4,8 @@ v1.0, 2021
 :toc:
 :toc-title: Contenido
 :homepage: https://iac-libro.org
-:imagedir: ./imagenes/
-
+:figure-caption: Imagen
+:source-highlighter: coderay
 
 [dedication]
 == Dedicación
@@ -35,4 +35,6 @@ Sí, copia este libro, usalo para cualquier fin, auméntalo, regalalo. Este libr
 include::cap001.adoc[]
 
 include::cap002.adoc[]
+
+include::cap003.adoc[]
 

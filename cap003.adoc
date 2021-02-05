@@ -1,0 +1,27 @@
+== Capítulo 3. Introducción a Terraform
+
+Como ya se platicó en el capítulo uno, durante el desarrollo de esta obra estaremos utilizando la versión abierta y gratuita de *_Hashicorp Terraform_*, la cual ha tomado mucha popularidad entre intenieros que hacen *_DEVOPS_* y *_CI/CD_*, temas que trataremos más adelante. Y no es casualidad, _Terraform_ ofrece un entorno bien documentado y con cientos de integraciones que permiten a las organizaciones tratar su infraestructura como código al escribir archivos con la declaración del estado deseado de las configuraciones. _Terraform_ usa su propio lenguage llamado *_Hashicorp Configuration Language (HLC)_* qué permite una descripción consisa de los recursos usando bloques de código, argumentos y expresiones.
+
+De la misma manera, _Terraform_ permite correr las verificaciones necesarias antes de aplicar las configuraciones deseadas para asegurarse que los cambios a realizar son factibles y el operador tiene oportunidad de entender qué cambios sucederán y como afectará el ambiente desplegado. Una vez hecho esto el operador puede proceder a aplicar los cambios, para poder llegar al estado deseado solo modificando el delta entre el estado actual y el deseado.
+
+.Código Ejemplo escrito en HCL para AWS
+[source,HCL]
+----
+variable "ami_id" {
+  type        = string
+  description = "AMI ID to use"
+  default     = "ami-09d95fab7fff3776c"
+}
+
+variable "instance_type" {
+  type        = string
+  description = "Instance type to use"
+  default     = "t3.micro"
+}
+
+variable "availability_zone" {
+  type        = string
+  description = "Availability Zone to use"
+  default     = "us-east-1a"
+}
+----
