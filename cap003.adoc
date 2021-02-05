@@ -276,6 +276,134 @@ Pueden existir multiples bloques de proveedor en caso de ser necesario. Podemos,
 
 El bloque de `resources` define una pieza de la infraestructura. Un recurso puede er un componente físico o virtual como una instancia de _EC2_ o puede ser un recurso lógico como una _IP elástica_.
 
-El bloque de recursos tiene dos entradas antes del bloque como tal: el tipo de recurso y el nombre del recurso. en este ejemplo, el tipo de recurso es `aws_instance` y el nombre es `ejemplo`. El prefijo en el tipo de recurso se mapea al proveedor. En nuestro caso `aws_instance` automaticamente le dice a _Terraform_ que este serña manejado por el proveedor _aws_
+El bloque de recursos tiene dos entradas antes del bloque como tal: el tipo de recurso y el nombre del recurso. en este ejemplo, el tipo de recurso es `aws_instance` y el nombre es `ejemplo`. El prefijo en el tipo de recurso se mapea al proveedor. En nuestro caso `aws_instance` automaticamente le dice a _Terraform_ que este serña manejado por el proveedor _aws_.
+
+Los argumentos del recurso están dentro del bloque del recurso. Los artumentos pueden ser cosas como el tamaño de la máquina, el nombre de la imagen del disco, o identificadores del _VPC_ donde se desplegará la instancia. Para entender los argumentos opcionales y requeridos de cada tipo de recurso, es necesario consultar los documentos de referencia de _HashiCorp_ footnote:[https://www.terraform.io/docs/providers/index.html]. En el caso de la instancia de _EC2_ que crearemos espeficicamos un _AMI_ para _Ubuntu_ y el tamaño requerido será `t2.micro` que califica como _free tier_ en nuestra cuenta de _AWS_.
+
+==== Inicializando el directorio
+
+Cuando creamos una nueva configuración (o hacemos _checkout_ de una configuración existente desde el control de versiones) necesitamos inicializar el directorio con `terrarom init`.
+
+_Terraform_ usa una arquitectura basada en _plugins_ que soporta cientos de proveedores de servicios de infraestructura. Inicializar un directorio de configuracion, descarga e instala los proveedores usados en la configuración qué, en este caso, es el proveedor `aws`. Los comandos subsecuentes, usarán los datos y configuraciones locales hechos durante la inicialización.
+
+Iniciemos el directorio.
+
+[source,bash]
+----
+$ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 2.70"...
+- Installing hashicorp/aws v2.70.0...
+- Installed hashicorp/aws v2.70.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+----
+
+_Terraform_ descarga el proveedor `aws` y lo instala en un subdirectorio oculto en el directorio actual. La salida muestra la versión del plugin que fue instalada.
+
+==== Formato y validación de la configuración
+
+Una mejor práctica es usar un formato consistente en los archivos y módilos escritos por diferentes equipos. El comando `terraform fmt` automáticamente actualiza la configuración en el directorio actual para una mejor lectura y consistencia.
+
+Formatearemos nuestra condiguración. _Terraform_ retornará los nombres de los archivos formateados. En este caso, nuestro archivo de configuración esta de por sí formateado de manera correcta, es por eso que _Terraform_ no retornará ningún nombre de archivo.
+
+[source,bash]
+----
+$ terraform fmt
+----
+
+Para validar que la configuración es sintáctimanete válida usamos el comando `terraform validate`. Validaremos nuestra configuración, si nuestra configuración es válira _Terraform_ retornará un mensaje éxitoso.
+
+[source,bash]
+----
+$ terraform validate
+Success! The configuration is valid.
+----
+
+==== Creación de Infraestructura
+
+En el mismo directorio donde se encuentra `ejemplo.tf` corremos `terraform apply`. Debes ver una salida similar a la mostrada a continuación.
+
+[source,bash]
+----
+terraform apply
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+  + resource "aws_instance" "example" {
+      + ami                          = "ami-830c94e3"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = (known after apply)
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+
+## ... Salida Omitida ...
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value:
+----
+
+[TIP]
+====
+Si tu configuración falla al aplicarse, quizá debas personalizar la región usada o remover el VPC por default.
+====
+
+This output shows the execution plan, describing which actions Terraform will take in order to change real infrastructure to match the configuration.
+
+The output format is similar to the diff format generated by tools such as Git. The output has a + next to aws_instance.example, meaning that Terraform will create this resource. Beneath that, it shows the attributes that will be set. When the value displayed is (known after apply), it means that the value won't be known until the resource is created.
+
+Terraform will now pause and wait for your approval before proceeding. If anything in the plan seems incorrect or dangerous, it is safe to abort here with no changes made to your infrastructure.
+
+In this case the plan is acceptable, so type yes at the confirmation prompt to proceed. Executing the plan will take a few minutes since Terraform waits for the EC2 instance to become available.
+
+
+[source,bash]
+----
+  Enter a value: yes
+
+aws_instance.example: Creating...
+aws_instance.example: Still creating... [10s elapsed]
+aws_instance.example: Still creating... [20s elapsed]
+aws_instance.example: Creation complete after 34s [id=i-0f57d1b36088f27ae]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+----
+
+
+
 
 
