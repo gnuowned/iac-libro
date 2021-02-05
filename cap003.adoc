@@ -264,4 +264,18 @@ El bloque `terraform {}` es requerido para que _Terraform_ conosca qué proveedo
 
 También podemos asignar una versión definida en el bloque `required_providers`. El argumento `version` es opcional, pero recomendado.
 
+===== Proveedores
+
+El bloque `provider` configura el nombre del proveedor, en nuestro caso `aws`, que es responsable de crear y manejar los recursos. Un proveedor es un _plugin_ que _Terraform_ usa para traducir las interacciones con las _API_ del servicio a administrar. Un proveedor es el responsable por entender tales interacciones y exponer los recursos. Por el hecho de que _Terraform_ puede interactuar con cualquier _API_, podemos representar casi cualquier tipo de infraestructura como recursos en _Terraform_.
+
+El atributo `profile` en nuestro bloque de proveedor se refiere, en este caso, a las credenciales de _AWS_ almacenadas en la el archivo de configuración de _AWS_, que se creo cuando se hizo la configuración del _CLI_ de _AWS_. La mejor práctica recomendada, es que no se use credenciales directamente en los archivos `.tf`.
+
+Pueden existir multiples bloques de proveedor en caso de ser necesario. Podemos, incluso, usar multiples proveedores juntos. Por ejemplo podemos pasar el identificador de una intancia de _AWS_ para monitorear tal recurso con _DataDog_.
+
+===== Recursos
+
+El bloque de `resources` define una pieza de la infraestructura. Un recurso puede er un componente físico o virtual como una instancia de _EC2_ o puede ser un recurso lógico como una _IP elástica_.
+
+El bloque de recursos tiene dos entradas antes del bloque como tal: el tipo de recurso y el nombre del recurso. en este ejemplo, el tipo de recurso es `aws_instance` y el nombre es `ejemplo`. El prefijo en el tipo de recurso se mapea al proveedor. En nuestro caso `aws_instance` automaticamente le dice a _Terraform_ que este serña manejado por el proveedor _aws_
+
 
