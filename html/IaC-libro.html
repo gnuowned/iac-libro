@@ -438,6 +438,217 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 </head>
 <body class="book">
 <div id="header">
@@ -467,6 +678,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#X1">Automatización de Infraestructura</a></li>
 <li><a href="#X2">Manejadores de configuración</a></li>
 <li><a href="#_el_crecimiento_de_la_popularidad_de_iac">El crecimiento de la popularidad de IaC</a></li>
+</ul>
+</li>
+<li><a href="#_capítulo_2_caso_de_estudio">Capítulo 2. Caso de estudio.</a></li>
+<li><a href="#_capítulo_3_introducción_a_terraform">Capítulo 3. Introducción a Terraform</a>
+<ul class="sectlevel2">
+<li><a href="#_características">Características</a></li>
+<li><a href="#_casos_de_uso">Casos de uso</a></li>
+<li><a href="#_instalación_de_terraform">Instalación de <em>Terraform</em></a></li>
+<li><a href="#_instalación_con_homebrew_en_macos">Instalación con <em>Homebrew</em> en <em>MacOS</em></a></li>
+<li><a href="#_instalación_con_chocolatey_en_windows">Instalación con <em>Chocolatey</em> en <em>Windows</em></a></li>
+<li><a href="#_instalación_en_linux">Instalación en Linux</a></li>
 </ul>
 </li>
 </ul>
@@ -565,17 +787,292 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_capítulo_2_caso_de_estudio">Capítulo 2. Caso de estudio.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Através de este libro, estaremos creando los bloques necesarios para mantener la operación de una aplicación mantenida en la nube, la cual cuenta con varios elementos de infraestructura que definiremos como código. La idea de este caso de estudio, será que podamos desplegar esta aplicación, modificarla, escalarla, decomisarla, cambiarla de una región a otra, etc.</p>
+</div>
+<div class="paragraph">
+<p>El casó de estudio será de la empresa imaginaría de repostería "Galletería Carlota" la cual mantiene su sistema de tienda en linea en la <strong><em>Amazon Web Service</em></strong> o <strong><em>AWS</em></strong> como le llamaremos de aquí en adelante. La aplicación tienen varias capas o niveles como se muestra en la siguiente figura, esta será la arquitectura propuesta para la aplicación. El cual cuenta con lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tres (3) Balanceador de Carga nativo de <em>AWS</em> para la capas de presentación, aplicación y base de datos.</p>
+</li>
+<li>
+<p>Una capa de presentación <em>web</em> que permite ser escalada verticalmente</p>
+</li>
+<li>
+<p>Las imágenes de los productos a vender serán almacenadas en un <em>S3 Bucket</em></p>
+</li>
+<li>
+<p>Una capa de Aplicación que será donde se procese la logíca de negocio la cual tambien debe ser verticalmente escalable</p>
+</li>
+<li>
+<p>Una capa de Base de datos, la cual es nativa a la nube y permite ser escalada verticalmente, en este caso usaremos <em>CoackroachDB</em></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="imagenes/App-Arch-Aws.png" alt="App Arch Aws">
+</div>
+<div class="title">Imagen 1. Arquitectura de la Aplicación en AWS</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_capítulo_3_introducción_a_terraform">Capítulo 3. Introducción a Terraform</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Como ya se platicó en el capítulo uno, durante el desarrollo de esta obra estaremos utilizando la versión abierta y gratuita de <strong><em>Hashicorp Terraform</em></strong>, la cual ha tomado mucha popularidad entre intenieros que hacen <strong><em>DEVOPS</em></strong> y <strong><em>CI/CD</em></strong>, temas que trataremos más adelante. Y no es casualidad, <em>Terraform</em> ofrece un entorno bien documentado y con cientos de integraciones que permiten a las organizaciones tratar su infraestructura como código al escribir archivos con la declaración del estado deseado de las configuraciones. <em>Terraform</em> usa su propio lenguage llamado <strong><em>Hashicorp Configuration Language (HLC)</em></strong> qué permite una descripción consisa de los recursos usando bloques de código, argumentos y expresiones.</p>
+</div>
+<div class="paragraph">
+<p>De la misma manera, <em>Terraform</em> permite correr las verificaciones necesarias antes de aplicar las configuraciones deseadas para asegurarse que los cambios a realizar son factibles y el operador tiene oportunidad de entender qué cambios sucederán y como afectará el ambiente desplegado. Una vez hecho esto el operador puede proceder a aplicar los cambios, para poder llegar al estado deseado solo modificando el delta entre el estado actual y el deseado.</p>
+</div>
+<div class="listingblock">
+<div class="title">Código Ejemplo escrito en HCL para AWS</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="s">variable "ami_id" {</span>
+  <span class="s">type        = string</span>
+  <span class="s">description = "AMI ID to use"</span>
+  <span class="s">default     = "ami-09d95fab7fff3776c"</span>
+<span class="err">}</span>
+
+<span class="s">variable "instance_type" {</span>
+  <span class="s">type        = string</span>
+  <span class="s">description = "Instance type to use"</span>
+  <span class="s">default     = "t3.micro"</span>
+<span class="err">}</span>
+
+<span class="s">variable "availability_zone" {</span>
+  <span class="s">type        = string</span>
+  <span class="s">description = "Availability Zone to use"</span>
+  <span class="s">default     = "us-east-1a"</span>
+<span class="err">}</span></code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_características">Características</h3>
+<div class="paragraph">
+<p>Algunas de las características más importantes de <em>Terraform</em> son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Archivos de Configuración Declarativa:</strong> Definición de Infraestructura como código para manejar el ciclo de vida completo, creación de nuevos recursos, manejo de los existentes así como la decomisación cuando estos ya no son necesarios.</p>
+</li>
+<li>
+<p><strong>Modulos instalables:</strong> Intalación automática de modulos de la comunidad o terceros desde el registro de <em>Hashicorp</em> por medio de <code>terraform init</code>.</p>
+</li>
+<li>
+<p><strong>Planeación y predicción de cambios:</strong> <em>Terraform</em> permite a los operadores hacer cambios a la infraestructura de manera segura y predectible.</p>
+</li>
+<li>
+<p>*Graficación de dependencias</p>
+</li>
+<li>
+<p><strong>Manejo del estado:</strong> Mapeo de la configuración de los recursos del mundo real, mantenimiento de los <em>metadatos</em> y mejoramiento del <em>performance</em> en infraestructuras grandes</p>
+</li>
+<li>
+<p><strong>Registro de más de 500 proveedores:</strong> El operador puede escoger de una serie de proveedores para las diferentes plataformas de nube disponibles en el mercado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_casos_de_uso">Casos de uso</h3>
+<div class="paragraph">
+<p>Algunos de los casos de uso que se pueden cubrir con terraform son: <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Despliegue de aplicaciones en <em>Heruku</em>.</p>
+</li>
+<li>
+<p>Aplicaciones Multi Capa. <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
+</li>
+<li>
+<p><em>Clusteres</em> de Autoservicio.</p>
+</li>
+<li>
+<p>Demostraciones de <em>Software</em>.</p>
+</li>
+<li>
+<p>Ambientes deshechables.</p>
+</li>
+<li>
+<p>Despliegues multi nube.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instalación_de_terraform">Instalación de <em>Terraform</em></h3>
+<div class="paragraph">
+<p>En esta sección estaremos discutiendo la instalación del binario de <em>Terraform</em> en nuestro equipo personal, donde crearemos un ambiente de desarrollo para escribir, probar y desplegar nuestra infraestructura. Existen varios métodos para la instalación de <em>Terraform</em> a continuación discutiremos los más importantes.</p>
+</div>
+<div class="sect3">
+<h4 id="_instalación_manual">Instalación Manual</h4>
+<div class="paragraph">
+<p>Para la instalación manual de <em>Terraform</em>, necesitamos encontrar el paquete apropiado <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup> para nuestro sistema operativo y bajarlo, este será un archivo <em>zip</em>.</p>
+</div>
+<div class="paragraph">
+<p>Una vez que se haya bajado <em>Terraform</em>, procederemos a expander el archivo <em>zip</em>. Encontraremos que es un solo binario llamado <code>terraform</code>. Todos los demás archivos que pudiera contener el archivo <em>zip</em> pueden ser borrados de manera segura sin que esto afecte el funcionamiento de <em>Terraform</em>.</p>
+</div>
+<div class="paragraph">
+<p>Finalmente, nos aseguraremos de que <code>terraform</code> se encuentre disponible en nuestro <code>PATH</code>. Esto se realiza de manera diferente, dependiendo el sistema operativo.</p>
+</div>
+<div class="sect4">
+<h5 id="_mac_o_linux">Mac o Linux</h5>
+<div class="paragraph">
+<p>Obtenemos la lista de rutas que están disponibles en la variable de entorno <code>PATH</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="nb">echo</span> $PATH</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Movemos el binario te <em>Terraform</em> a uno de las rutas listadas. Este comando asume que el binario se encuentra en el archivo de descargas y que <code>PATH</code> contiene <code>/usr/local/bin</code>, personaliza en caso de las rutas en tu sistema operativo sean diferentes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">mv</span> <span class="o">~</span><span class="na">/Downloads/terraform /usr/local/bin</span>/</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows">Windows</h4>
+<div class="paragraph">
+<p>En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el <code>PATH</code> en <em>Windows</em> através de la interfaz gráfica: <code><a href="https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows" class="bare">https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows</a></code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instalación_con_homebrew_en_macos">Instalación con <em>Homebrew</em> en <em>MacOS</em></h3>
+<div class="paragraph">
+<p><em>Homebrew</em> es un manejador de paquetes de fuente abierta para el sistema operativo <em>MacOS</em>. Instala la <em>formula</em> oficial de <em>Terraform</em> desde la terminal.</p>
+</div>
+<div class="paragraph">
+<p>Primero, installamos el <em>tap</em> de <em>HashiCorp</em>, un repositorio para todos los paquetes de <em>Homebrew</em> de la compañia:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">brew</span> <span class="kd">tap</span> <span class="kd">hashicorp</span><span class="na">/tap</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ahora, Instalamos <em>Terraform</em> con <code>hashicorp/tap/terraform</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">brew</span> <span class="kd">install</span> <span class="kd">hashicorp</span><span class="na">/tap/terraform</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para actualizar a la última versión, ejecutamos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">brew</span> <span class="kd">upgrade</span> <span class="kd">hashicorp</span><span class="na">/tap/terraform</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instalación_con_chocolatey_en_windows">Instalación con <em>Chocolatey</em> en <em>Windows</em></h3>
+<div class="paragraph">
+<p><em>Chocolatey</em> es un manejador de paquetes de codigo abierto para <em>Windows</em>. Installamos el paquete de <em>Terraform</em> desde la linea de comandos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">choco</span> <span class="kd">install</span> <span class="kd">terraform</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instalación_en_linux">Instalación en Linux</h3>
+<div class="sect3">
+<h4 id="_ubuntudebian">Ubuntu/Debian</h4>
+<div class="paragraph">
+<p>Agregamos la llave <em>GPG</em> de <em>HashiCorp</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="nb">curl</span> <span class="na">-fsSL </span><span class="kd">https</span>://apt.releases.hashicorp.com/gpg <span class="o">|</span> <span class="kd">sudo</span> <span class="kd">apt</span><span class="na">-key </span><span class="kd">add</span> <span class="o">-</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Agregamos los repositorios oficiales de <em>HashiCorp</em> para <em>Linux</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">apt</span><span class="na">-add-repository </span><span class="s2">"deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Actualización e instalación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">apt</span><span class="na">-get </span><span class="kd">update</span> <span class="o">&amp;&amp;</span> <span class="kd">sudo</span> <span class="kd">apt</span><span class="na">-get </span><span class="kd">install</span> <span class="kd">terraform</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_centosrhel">CentOS/RHEL</h4>
+<div class="paragraph">
+<p>Instalamos <code>yum-config-manager</code> para manejar repositorios.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">yum</span> <span class="kd">install</span> <span class="na">-y </span><span class="kd">yum</span><span class="na">-utils</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usamos <code>yum-config-manager</code> para agregar el repositorio oficial de <em>HachiCorp</em> para <em>Linux</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">yum</span><span class="na">-config-manager </span><span class="o">-</span><span class="na">-add-repo </span><span class="kd">https</span>://rpm.releases.hashicorp.com/RHEL/hashicorp.repo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instalamos</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="batch"><span class="kd">sudo</span> <span class="kd">yum</span> <span class="na">-y </span><span class="kd">install</span> <span class="kd">terraform</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. <a href="https://www.terraform.io/" class="bare">https://www.terraform.io/</a>
 </div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://www.terraform.io/intro/use-cases.html" class="bare">https://www.terraform.io/intro/use-cases.html</a>
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. Este es el caso de uso específico que estaremos cubriendo en esta obra
+</div>
+<div class="footnote" id="_footnotedef_4">
+<a href="#_footnoteref_4">4</a>. <a href="https://www.terraform.io/downloads.html" class="bare">https://www.terraform.io/downloads.html</a>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-02-04 17:28:37 -0600
+Last updated 2021-02-04 22:23:58 -0600
 </div>
 </div>
 </body>

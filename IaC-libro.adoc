@@ -5,7 +5,8 @@ v1.0, 2021
 :toc-title: Contenido
 :homepage: https://iac-libro.org
 :figure-caption: Imagen
-:source-highlighter: coderay
+:source-highlighter: rouge
+:icons:
 
 [dedication]
 == Dedicación
