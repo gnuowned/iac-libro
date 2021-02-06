@@ -1,0 +1,4 @@
+[bibliography]
+== Bibliografía
+
+* [[[intro_terraform]]] HashiCorp. (2020). Introduction to Infrastructure as Code with Terraform. 2021, de Hashicorp Sitio web: https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code?in=terraform/aws-get-started
