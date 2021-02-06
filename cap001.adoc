@@ -9,7 +9,6 @@ Para hacer esto realidad, debemos contar con un intermediario o intérprete que 
 * Replicación sencilla
 * *ESCRIBIR MAS*
 
-[[X1]]
 === Automatización de Infraestructura
 
 
@@ -19,7 +18,6 @@ Más allá de la automatización, existe el concepto de *_orquestación_* en el 
 
 Esto permite "orquestrar" el despliegue de la pila completa de la infraestructura. Pero de la misma manera que se hace al automatizar de manera imperativa, capa por capa, la orquestación imperativa no permite manejar el ciclo de vida completo de la infraestructura.
 
-[[X2]]
 === Manejadores de configuración
 
 
