@@ -13,7 +13,7 @@ v1.0, 2021
 [dedication]
 == Dedicación
 
-A Valeria, Roberto y Carlota. Mi mundo
+TODO
 
 
 [preface]
