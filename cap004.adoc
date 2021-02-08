@@ -1,7 +1,7 @@
 == Capítulo 4. Introducción a Packer
 
 
-Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Packer también forma parte del stack de *_Hashicorp_*. Este nos permite crear imágenes de máquinas idénticas, para múltiples plataformas de destino desde una única fuente de configuración lo que facilita la gestión de la configuración y el aprovisionamiento de la infraestructura. Packer es relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, se pueden crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado.
+Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Packer también forma parte del stack de *_Hashicorp_*. Este nos permite crear imágenes de máquinas idénticas, para múltiples plataformas de destino desde una única fuente de configuración, lo que facilita la gestión de la configuración y el aprovisionamiento de la infraestructura. Packer es relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, se pueden crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado.
 
 Una imagen de máquina es una unidad estática que contiene un sistema operativo preconfigurado y un software instalado. Podemos usar imágenes para clonar o crear nuevos hosts. Las imágenes ayudan a acelerar el proceso de construcción y despliegue de nueva infraestructura. Estas existen en muchos formatos, específicos para diversas plataformas y entornos de implementación.
 
@@ -51,30 +51,29 @@ Algunas de las características más importantes de _Packer_ son:
 Algunos
 ====
 
-* *Rápido despliegue de infraestructura:* Las imágenes de Packer  permiten lanzar máquinas completamente configuradas y aprovisionadas en segundos. Esto beneficia también a los ambientes de desarrollo, ya que se pueden crear Boxes de Vagrant con Packer, aprovisionadas de la misma manera que en producción, lo que mantiene la paridad.
-* *Detección de problemas anticipada*. Packer instala y configura  el software de una máquina en el momento en que se crea la imagen. Si hay errores en este proceso, se detectarán a tiempo en las fases de construcción de un flujo o _pipeline_ de CI/CD en lugar de descubrirlos cuando inicie el entorno.
-* *Basado en constructores para múltiples formatos de imagen:* Los constructores o _builders_ leen la configuración y la usan para ejecutar y generar una imagen de máquina virtual. Son constructores: VirtualBox, VMware y Amazon EC2 y más. footnote:[https://www.packer.io/docs/builders]. Los constructores son el equivalente a los proveedores de Terraform.
-* *Portabilidad de entornos:*. Ya que Packer puede crear imágenes idénticas para múltiples plataformas,es posible ejecutar el entorno de producción en AWS,el entorno de  QA en una nube privada como OpenStack y los entornos de desarrolloen Vagrant.
-* *Soporte para multiples aprovisionadores:* Los _provisioners_  son componentes de Packer que instalan y configuran software dentro de una máquina antes de que esta se convierta en una imagen estática. Realizan el trabajo principal de hacer que la imagen contenga software útil. Los aprovisionadores de ejemplo incluyen scripts de shell, Ansible, etc. footnote:[https://www.packer.io/docs/provisioners]
+* *Rápido despliegue de infraestructura:* las imágenes de Packer permiten lanzar máquinas completamente configuradas y aprovisionadas en segundos. Esto beneficia también a los ambientes de desarrollo, ya que se pueden crear Boxes de Vagrant con Packer, aprovisionadas de la misma manera que en producción, lo que mantiene la paridad.
+* *Detección anticipada de problemas:* Packer instala y configura el software de una máquina en el momento en que se crea la imagen. Si hay errores en este proceso, se detectarán a tiempo en las fases de construcción de un flujo o _pipeline_ de CI/CD en lugar de descubrirlos cuando inicie el entorno.
+* *Basado en constructores para múltiples formatos de imagen:* los constructores o _builders_ leen la configuración y la usan para ejecutar y generar una imagen de máquina virtual. Son constructores: VirtualBox, VMware y Amazon EC2 y más. footnote:[https://www.packer.io/docs/builders]. Los constructores son el equivalente a los proveedores de Terraform.
+* *Portabilidad de entornos:* ya que Packer puede crear imágenes idénticas para múltiples plataformas,es posible ejecutar el entorno de producción en AWS,el entorno de  QA en una nube privada como OpenStack y los entornos de desarrollo en Vagrant.
+* *Soporte para multiples aprovisionadores:* los _provisioners_  son componentes de Packer que instalan y configuran software dentro de una máquina antes de que esta se convierta en una imagen estática. Su principal objetivo es asegurarse que la imagen contenga software útil. Los aprovisionadores de ejemplo incluyen scripts de shell, Ansible, etc. footnote:[https://www.packer.io/docs/provisioners]
 
 === Casos de uso
 
-Construir imágenes es tedioso. Es normalmente un proceso manual por lo tanto es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con herramientas de gestión de condiguraciones como Ansible. Packer permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.
+Construir imágenes es tedioso. Es normalmente un proceso manual y por lo tanto, es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con herramientas de gestión de configuraciones como Ansible. Packer permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.
 
 Estos son casos de uso aplicados en la industria: footnote:[https://www.packer.io/intro/use-cases]
 
 ==== Consistencia ambiental
-¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, staging y producción? Packer es ideal para estandarizar esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas.
+¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, _staging_ y producción? Packer es ideal para estandarizar esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas.
 
 Por ejemplo, un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el “hardening” de base que para imponer estándares entre equipos.
 
 ==== Entrega continua
-Packer se integra bien con las herramientas de infraestructura existentes. Se puede agregar en un pipeline de implementación. Es decir, parte del pipeline será crear la imagen. Un ejemplo de esto es la fase Bake de Spinnaker footnote:[https://spinnaker.io/setup/bakery/#packer-templates].
+Packer se integra bien con las herramientas de infraestructura existentes. Se puede agregar en un pipeline de implementación. Es decir, parte del pipeline será crear la imagen. Un ejemplo de esto es la fase _Bake_ de _Spinnaker_ footnote:[https://spinnaker.io/setup/bakery/#packer-templates].
 
-Packer puede crear imagenes de Amazon Machine Images (AMI), después Terraform puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar Ansible ( periódicamente) para proporcionar la configuración final y mantener nuestros hosts configurados correctamente.
+Packer puede crear imágenes de Amazon Machine Images (AMI), después Terraform puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar Ansible ( periódicamente) para proporcionar la configuración final y mantener nuestros hosts configurados correctamente.
 
 Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host que no funciona correctamente, el proceso es rápido y consistente. Nuestra infraestructura se vuelve desechable, reemplazable y repetible. Es decir, manejamos un enfoque de infraestructura inmutable.
-
 
 Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.
 
@@ -84,30 +83,30 @@ Los beneficios de una infraestructura inmutable incluyen más consistencia y con
 ==== Verificación de la instalación.
 *_TODO_*
 
-=== Contrucción de Imágenes
+=== Construcción de imágenes
 
-Con _Packer_ installado, estamos listos para crear nuestra primer imagen.
+Con _Packer_ instalado, estamos listos para crear nuestra primer imagen.
 
 Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: constructores, aprovisionadores y postprocesamiento.
 
-Los constructores es lo que determina qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para AWS en formato AMI o una para Virtualbox en formato OVF.
+*Los constructores* son los que determinan qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para AWS en formato AMI o una para Virtualbox en formato OVF.
 
 No estamos limitados a un solo constructor. Si necesitamos una imagen idéntica para usarla en AWS y Vagrant, definimos varios constructores. 
 
-Los aprovisionadores son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema. 
+*Los aprovisionadores* son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema. 
 
-Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos hasta el uso de playbooks de Ansible.Lo importante para mantener un enfoque DevOps es usar los mismos scripts que usamos en un servidor de producción pero aplicados a un  entorno de desarrollo local con Vagrant. De esta manera el entorno de Desarrollo y Producción mantendrán paridad.
+Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos hasta el uso de playbooks de Ansible.Lo importante para mantener un enfoque DevOps es usar los mismos scripts que usamos en un servidor de producción pero aplicados a un entorno de desarrollo local con Vagrant. De esta manera el entorno de Desarrollo y Producción mantendrán paridad.
 
-Por último, están los postprocesadores. Estos son opcionales. Por ejemplo, son necesarios para crear boxes de Vagrant. Estas  se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
+Por último, están *los postprocesadores*. Estos son opcionales. Por ejemplo, son necesarios para crear Boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
 
 
 ==== Pre requisitos
 
 Para continuar, necesitamos:
 
-* Una cuenta de _AWS_
-* La intefaz de Linea de comando de _AWS_
-* Las credenciales de _AWS_ configuradas localmente
+* Una cuenta de _AWS_.
+* La intefaz de línea de comando de _AWS_.
+* Las credenciales de _AWS_ configuradas localmente.
 
 Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y configuración de una cuenta de Amazon Web Services]
 
