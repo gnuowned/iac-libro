@@ -78,7 +78,174 @@ Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host
 Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.
 
 === Instalación de _Packer_
-*_TODO_*
+
+Instalaremos el binario de Packer en nuestro equipo personal para ejecutar la construcción de imagenes en la nube de AWS. 
+
+Packer se puede instalar de las siguientes formas:
+
+- Usando un binario precompilado. 
+- Construyendo desde la fuente. 
+
+La forma estandar es usar los binarios que Hashicorp lanza. Este método se recomienda para la mayoría de los usuarios.
+
+==== Instalación Manual
+
+Para la instalación manual de _Packer_, necesitamos encontrar el paquete apropiado footnote:[https://www.packer.io/downloads] para nuestro sistema operativo y bajarlo, este será un archivo _zip_.
+
+Una vez que se haya descargado, procederemos a descomprimir el archivo _zip_.
+
+Finalmente, nos aseguraremos de que `packer` se encuentre disponible en nuestro `PATH`. Esto se realiza de manera diferente, dependiendo el sistema operativo.
+
+===== Mac o Linux
+
+Obtenemos la lista de rutas que están disponibles en la variable de entorno `PATH`
+
+[source,batch]
+----
+echo $PATH
+----
+
+Movemos el binario de _Packer_ a uno de las rutas listadas. Este comando asume que el binario se encuentra en el archivo de descargas y que `PATH` contiene `/usr/local/bin`, personaliza en caso de las rutas en tu sistema operativo sean diferentes.
+
+[source,batch]
+----
+mv ~/Downloads/packer /usr/local/bin/
+----
+
+==== Windows
+
+En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica: `https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
+
+==== Instalación con _Homebrew_ en _MacOS_
+
+_Homebrew_ es un manejador de paquetes de fuente abierta para el sistema operativo _MacOS_. Instala la _formula_ oficial de _Terraform_ desde la terminal.
+
+Primero, installamos el _tap_ de _HashiCorp_, un repositorio para todos los paquetes de _Homebrew_ de la compañia:
+
+[source,batch]
+----
+brew tap hashicorp/tap
+----
+
+Ahora, Instalamos _Terraform_ con `hashicorp/tap/terraform`
+
+[source,batch]
+----
+brew install hashicorp/tap/terraform
+----
+
+Para actualizar a la última versión, ejecutamos:
+
+[source,batch]
+----
+brew upgrade hashicorp/tap/terraform
+----
+
+==== Instalación con _Chocolatey_ en _Windows_
+
+_Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_. Installamos el paquete de _Terraform_ desde la linea de comandos.
+
+[source,batch]
+----
+choco install terraform
+----
+
+
+==== Instalación en Linux
+
+===== Ubuntu/Debian
+
+Agregamos la llave _GPG_ de _HashiCorp_.
+
+[source,batch]
+----
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+----
+
+Agregamos los repositorios oficiales de _HashiCorp_ para _Linux_.
+
+[source,batch]
+----
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+----
+
+Actualización e instalación.
+
+[source,batch]
+----
+sudo apt-get update && sudo apt-get install terraform
+----
+
+===== CentOS/RHEL
+
+Instalamos `yum-config-manager` para manejar repositorios.
+
+[source,batch]
+----
+sudo yum install -y yum-utils
+----
+
+Usamos `yum-config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+
+[source,batch]
+----
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+----
+
+Instalamos
+
+[source,batch]
+----
+sudo yum -y install terraform
+----
+
+===== Fedora
+
+Instalamos `dnf config-manager` para manejar repositorios.
+
+[source,batch]
+----
+sudo dnf install -y dnf-plugins-core
+----
+
+Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+
+[source,batch]
+----
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+----
+
+Instalamos
+
+[source,batch]
+----
+sudo dnf -y install terraform
+----
+
+==== Verificación de la instalación.
+
+Para verificar la instalación abrimos una nueva terminal y ejecutamos `terraform -help`
+
+[source,batch]
+----
+terraform -help
+Usage: terraform [global options] <subcommand> [args]
+
+The available commands for execution are listed below.
+The primary workflow commands are given first, followed by
+less common or more advanced commands.
+...
+----
+
+Cualquier sub comando despues de `terraform -help` permite aprender más sobre el mismo.
+
+[source,batch]
+----
+terraform -help plan
+----
+
+Con esto finalizamos la instalación de _Terraform_ y estamos listos para empezar a construir infraestructura como código.
+
 
 ==== Verificación de la instalación.
 *_TODO_*
