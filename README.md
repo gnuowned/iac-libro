@@ -1,6 +1,8 @@
 
 # Infraestructura como Código - Libro colaborativo
 
+https://img.shields.io/github/contributors/gnuowned/iac-libro?style=plastic
+
 ## Acerca de ##
 
 Infraestructura como Código es un libro gratuito e introductorio sobre el paradigma de IaC -(Infrastructure as Code) usando herramientas como Terraform, Packer y Ansible.
