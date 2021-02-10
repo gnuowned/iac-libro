@@ -3,7 +3,7 @@
 
 ## Acerca de ##
 
-Infraestructura como Código es un libro gratuito e introductoriosobre el paradigma de IaC -(nfrastructure as Code) usando herramientas como Terraform, Packer y Ansible.
+Infraestructura como Código es un libro gratuito e introductorio sobre el paradigma de IaC -(Infrastructure as Code) usando herramientas como Terraform, Packer y Ansible.
 
  - El libro se encuentra en desarrollo.
  - Se aceptan sugerencias en forma de issues. 
