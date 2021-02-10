@@ -22,7 +22,7 @@ Puedes descargar el libro en:
 
 
 ## Licencia ##
-El libro se distribuye libremente bajo la licencia de Creative Commns:[Atribución/Reconocimiento-CompartirIgual 4.0 Internacional](<http://creativecommons.org/licenses/by-nc-sa/4.0/>).
+El libro se distribuye libremente bajo la licencia de Creative Commns: [Atribución/Reconocimiento-CompartirIgual 4.0 Internacional](<http://creativecommons.org/licenses/by-nc-sa/4.0/>).
 
 
 [![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
