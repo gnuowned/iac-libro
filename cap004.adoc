@@ -570,7 +570,7 @@ $ mkdir instancias
 Nos cambiamos al directorio recién creado
 [source,bash]
 ----
-$ cd instacnias
+$ cd instancias
 ----
 
 Creamos una plantilla de terraform `main.tf `
@@ -705,3 +705,16 @@ Inicie la aplicación web demo.
 $ go run webapp.go
 ----
 En el navegador web, navega hasta la dirección IP de la instancia y el puerto 8080 para ver la aplicación que implementaste.
+
+
+==== Destruye la instancia
+
+Evita cargos innecesarios en tu cuenta de AWS destruyendo su instancia en Terraform.
+[source,bash]
+----
+$ terraform destruir
+----
+
+Escribe sí cuando se  solicite en la terminal la confirmación.
+
+Esto no destruirá la imagen de Packer. 
