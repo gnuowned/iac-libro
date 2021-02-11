@@ -556,7 +556,7 @@ us-east-1: ami-06cb92a18a30fec16
 La última línea de la salida es la ID de AMI que debemos pasar a la configuración de Terraform en el siguiente paso.
 
 
-==== Desplegar la imagen con terraform
+=== Desplegar imagenes de Packer con Terraform
 
 
 La AMI es el artefacto resultant de la ejecución de Packer y está disponible en la cuenta de AWS en la sección Imágenes de EC2. Puedes visitar la consola web de AWS para ver este ID de AMI nuevamente.
