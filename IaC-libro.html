@@ -701,6 +701,7 @@ pre.rouge {
 <li><a href="#_casos_de_uso_2">Casos de uso</a></li>
 <li><a href="#_instalación_de_packer">Instalación de <em>Packer</em></a></li>
 <li><a href="#_construcción_de_imágenes">Construcción de imágenes</a></li>
+<li><a href="#_desplegar_imagenes_de_packer_con_terraform">Desplegar imagenes de Packer con Terraform</a></li>
 </ul>
 </li>
 <li><a href="#_creación_y_configuración_de_una_cuenta_de_amazon_web_services">Apéndice A: Creación y configuración de una cuenta de <em>Amazon Web Services</em></a></li>
@@ -2366,8 +2367,9 @@ us-east-1: ami-06cb92a18a30fec16</code></pre>
 <p>La última línea de la salida es la ID de AMI que debemos pasar a la configuración de Terraform en el siguiente paso.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_desplegar_la_imagen_con_terraform">Desplegar la imagen con terraform</h4>
+</div>
+<div class="sect2">
+<h3 id="_desplegar_imagenes_de_packer_con_terraform">Desplegar imagenes de Packer con Terraform</h3>
 <div class="paragraph">
 <p>La AMI es el artefacto resultant de la ejecución de Packer y está disponible en la cuenta de AWS en la sección Imágenes de EC2. Puedes visitar la consola web de AWS para ver este ID de AMI nuevamente.</p>
 </div>
@@ -2384,7 +2386,7 @@ us-east-1: ami-06cb92a18a30fec16</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>instacnias</code></pre>
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>instancias</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2501,7 +2503,6 @@ output <span class="s2">"id"</span> <span class="o">{</span>
 <div class="paragraph">
 <p>La instancia ya contiene la llave SSH para realizar la conexión , porque terraform usó la AMI que se construyó previamente con Packer. El uso de una AMI construida con Packer hace que la implementación de instancias masivas sea más rápida y coherente que la configuración manual de las instancias.</p>
 </div>
-</div>
 <div class="sect3">
 <h4 id="_verificar_la_instancia">Verificar la instancia</h4>
 <div class="paragraph">
@@ -2538,7 +2539,7 @@ output <span class="s2">"id"</span> <span class="o">{</span>
 <div class="sect3">
 <h4 id="_destruye_la_instancia">Destruye la instancia</h4>
 <div class="paragraph">
-<p>Evite cargos innecesarios en tu cuenta de AWS destruyendo su instancia en Terraform.</p>
+<p>Evita cargos innecesarios en tu cuenta de AWS destruyendo su instancia en Terraform.</p>
 </div>
 <div class="listingblock">
 <div class="content">
