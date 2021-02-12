@@ -377,8 +377,8 @@ El bloque de *variables*  determina las variables de entorno que Packer utilizar
 
 [source,json]
 ----
-{
-  "variables": {
+
+"variables": {
       "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
       "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
       "aws_region": "us-east-1"
@@ -432,7 +432,7 @@ El segundo aprovisionador es uden tipo shell que apunta a la ruta relativa a un 
         "script": "../scripts/setup.sh"
     }
 ]
-}
+
 ----
 
 ===== Script de aprovisionamiento
