@@ -7,7 +7,12 @@ Una imagen de máquina es una unidad estática que contiene un sistema operativo
 
 Packer es compatible con Linux, Windows y Mac OS X. También es compatible con una amplia variedad de formatos de imagen cmo Amazon EC2, CloudStack, DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox, VMware y más. También cuenta con integraciones para otras herramientas, como *_Ansible_* y *_Vagrant_*.
 
-.Código Ejemplo de plantilla de Packer para crear una imagen para AWS
+[NOTE]
+====
+Esta introducción está basada en la documentación oficial de Hashicorp <<intro_packer>>.
+====
+
+Código Ejemplo de plantilla de Packer para crear una imagen para AWS
 [source,json]
 ----
 {
@@ -46,10 +51,6 @@ Packer es compatible con Linux, Windows y Mac OS X. También es compatible con u
 
 Algunas de las características más importantes de _Packer_ son:
 
-[WARNING]
-====
-Algunos
-====
 
 * *Rápido despliegue de infraestructura:* las imágenes de Packer permiten lanzar máquinas completamente configuradas y aprovisionadas en segundos. Esto beneficia también a los ambientes de desarrollo, ya que se pueden crear Boxes de Vagrant con Packer, aprovisionadas de la misma manera que en producción, lo que mantiene la paridad.
 * *Detección anticipada de problemas:* Packer instala y configura el software de una máquina en el momento en que se crea la imagen. Si hay errores en este proceso, se detectarán a tiempo en las fases de construcción de un flujo o _pipeline_ de CI/CD en lugar de descubrirlos cuando inicie el entorno.
@@ -78,10 +79,176 @@ Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host
 Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.
 
 === Instalación de _Packer_
-*_TODO_*
+
+Instalaremos el binario de Packer en nuestro equipo personal para ejecutar la construcción de imagenes en la nube de AWS. Packer se puede instalar de las siguientes formas:
+
+- Usando un binario precompilado. 
+- Construyendo desde la fuente. 
+
+La forma estandar es usar los binarios que Hashicorp lanza. Este método se recomienda para la mayoría de los usuarios.
+
+==== Instalación Manual
+
+Para la instalación manual de _Packer_, necesitamos encontrar el paquete apropiado footnote:[https://www.packer.io/downloads] para nuestro sistema operativo y bajarlo, este será un archivo _zip_.
+
+Una vez que se haya descargado, procederemos a descomprimir el archivo _zip_.
+
+Finalmente, nos aseguraremos de que `packer` se encuentre disponible en nuestro `PATH`. Esto se realiza de manera diferente, dependiendo el sistema operativo.
+
+===== Mac o Linux
+
+Obtenemos la lista de rutas que están disponibles en la variable de entorno `PATH`
+
+[source,batch]
+----
+echo $PATH
+----
+
+Movemos el binario de _Packer_ a uno de las rutas listadas. Este comando asume que el binario se encuentra en el archivo de descargas y que `PATH` contiene `/usr/local/bin`, personaliza en caso de las rutas en tu sistema operativo sean diferentes.
+
+[source,batch]
+----
+mv ~/Downloads/packer /usr/local/bin/
+----
+
+==== Windows
+
+En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica: `https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
+
+==== Instalación con _Homebrew_ en _MacOS_
+
+_Homebrew_ es un manejador de paquetes de fuente abierta para el sistema operativo _MacOS_. Instala la _formula_ oficial de _Packer_ desde la terminal.
+
+Primero, installamos el _tap_ de _HashiCorp_, un repositorio para todos los paquetes de _Homebrew_ de la compañia:
+
+[source,batch]
+----
+brew tap hashicorp/tap
+----
+
+Ahora, Instalamos _Packer_ con `hashicorp/tap/packer`
+
+[source,batch]
+----
+brew install hashicorp/tap/packer
+----
+
+Para actualizar a la última versión, ejecutamos:
+
+[source,batch]
+----
+brew upgrade hashicorp/tap/packer
+----
+
+==== Instalación con _Chocolatey_ en _Windows_
+
+_Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_. Installamos el paquete de _Packer_ desde la linea de comandos.
+
+[source,batch]
+----
+choco install packer
+----
+
+
+==== Instalación en Linux
+
+===== Ubuntu/Debian
+
+Agregamos la llave _GPG_ de _HashiCorp_.
+
+[source,batch]
+----
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+----
+
+Agregamos los repositorios oficiales de _HashiCorp_ para _Linux_.
+
+[source,batch]
+----
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+----
+
+Actualización e instalación.
+
+[source,batch]
+----
+sudo apt-get update && sudo apt-get install packer
+----
+
+===== CentOS/RHEL
+
+Instalamos `yum-config-manager` para manejar repositorios.
+
+[source,batch]
+----
+sudo yum install -y yum-utils
+----
+
+Usamos `yum-config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+
+[source,batch]
+----
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+----
+
+Instalamos
+
+[source,batch]
+----
+sudo yum -y install packer
+----
+
+===== Fedora
+
+Instalamos `dnf config-manager` para manejar repositorios.
+
+[source,batch]
+----
+sudo dnf install -y dnf-plugins-core
+----
+
+Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+
+[source,batch]
+----
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+----
+
+Instalamos
+
+[source,batch]
+----
+sudo dnf -y install packer
+----
 
 ==== Verificación de la instalación.
-*_TODO_*
+
+Para verificar la instalación abrimos una nueva terminal y ejecutamos `packer`
+
+[source,batch]
+----
+$ packer -help
+Usage: packer [--version] [--help] <command> [<args>]
+
+Available commands are:
+    build           build image(s) from template
+    console         creates a console for testing variable interpolation
+    fix             fixes templates from old versions of packer
+    hcl2_upgrade    transform a JSON template into a HCL2 configuration
+    inspect         see components of a template
+    validate        check that a template is valid
+    version         Prints the Packer version
+
+----
+
+Cualquier sub comando despues de `packer -help` permite aprender más sobre el mismo.
+
+[source,batch]
+----
+packer -help build
+----
+
+Con esto finalizamos la instalación de _Packer_ y estamos listos para empezar a construir imagenes en la nube.
 
 === Construcción de imágenes
 
@@ -107,9 +274,447 @@ Para continuar, necesitamos:
 * Una cuenta de _AWS_.
 * La intefaz de línea de comando de _AWS_.
 * Las credenciales de _AWS_ configuradas localmente.
+* Crear una llave SSH
 
 Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y configuración de una cuenta de Amazon Web Services]
 
+===== Crear llave SSH
+
+Crearemos una llave  SSH local para conectarnos con el usuario terraform que crearemos en la instancia.
+
+Genera una nueva clave SSH llamada `tf-packer`. El argumento proporcionado con la bandera `-f` crea la clave en el directorio actual y crea dos archivos llamados `tf-packer` y `tf-packer.pub`. Cambie la dirección de correo electrónico.
+
+===== Línea de comandos de Mac o Linux
+
+[source,batch]
+----
+$ ssh-keygen -t rsa -C "correo@ejemplo.com" -f ./tf-packer
+----
+
+Cuando se  solicite, presiona Intro para dejar la contraseña en blanco.
+
+===== Windows con PuTTY
+
+Si estás en una máquina con Windows, usa Putty para generar claves SSH siguiendo las instrucciones del siguiente enlace: https://www.ssh.com/ssh/putty/windows/puttygen/.
+
 ==== Escribir plantillas de Packer
 
-*_TODO_*
+A continuación crearemos una imagen con Packer en AWS y aprovisionaremos software en ella. Posteriormente usaremos esta imagen con Terraform para crear infraestructura.
+
+Creamos un directorio llamado  `iac-libro-packer`
+[source,bash]
+----
+$ mkdir iac-libro-packer
+----
+
+Nos cambiamos al directorio recién creado
+[source,bash]
+----
+$ cd iac-libro-packer
+----
+
+Dentro, creamos el directorio `imagenes`
+
+[source,bash]
+----
+$ mkdir imagenes
+----
+
+Nos cambiamos al directorio recién creado
+[source,bash]
+----
+$ cd imagenes
+----
+
+
+Creamos la plantilla `imagen.json` de Packer con la siguiente estructura.
+[source,json]
+----
+{
+  "variables": {
+      "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+      "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+      "aws_region": "us-east-1"
+  },
+  "builders": [
+      {
+          "type": "amazon-ebs",
+          "access_key": "{{user `aws_access_key`}}",
+          "secret_key": "{{user `aws_secret_key`}}",
+          "region": "{{user `aws_region`}}",
+          "source_ami_filter": {
+              "filters": {
+                  "virtualization-type": "hvm",
+                  "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+                  "root-device-type": "ebs"
+              },
+              "owners": [
+                  "099720109477"
+              ],
+              "most_recent": true
+          },
+          "instance_type": "t2.micro",
+          "ssh_username": "ubuntu",
+          "ami_name": "learn-packer {{timestamp}}"
+      }
+  ],
+  "provisioners": [
+    {
+        "type": "file",
+        "source": "../tf-packer.pub",
+        "destination": "/tmp/tf-packer.pub"
+      },
+    {
+        "type": "shell",
+        "script": "../scripts/setup.sh"
+    }
+]
+}
+----
+
+
+El bloque de *variables*  determina las variables de entorno que Packer utilizará para la cuenta de AWS. Esta región debe coincidir con la región donde Terraform implementará la infraestructura, por lo que si la personalizas, tendrás que  personalizar la configuración de Terraform para que coincida (más adelante).
+
+[source,json]
+----
+
+"variables": {
+      "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+      "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+      "aws_region": "us-east-1"
+}
+----
+
+El bloque de *constructores* crea una imagen en formato AMI denominada imagen-iac-libro-{{timestamp}} que se basa en una imagen t2.micro de Ubuntu con Elastic Block Storage (EBS).
+
+[source,json]
+----
+"builders": [
+      {
+          "type": "amazon-ebs",
+          "access_key": "{{user `aws_access_key`}}",
+          "secret_key": "{{user `aws_secret_key`}}",
+          "region": "{{user `aws_region`}}",
+          "source_ami_filter": {
+              "filters": {
+                  "virtualization-type": "hvm",
+                  "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+                  "root-device-type": "ebs"
+              },
+              "owners": [
+                  "099720109477"
+              ],
+              "most_recent": true
+          },
+          "instance_type": "t2.micro",
+          "ssh_username": "ubuntu",
+          "ami_name": "learn-packer {{timestamp}}"
+      }
+]
+----
+
+Finalmente, el bloque de *aprovisionadores* aprovisiona las instancias con scripts o archivos específicos.
+
+El primer aprovisionador es un aprovisionador de tipo de archivo y copia la clave SSH pública recién creada en un directorio temporal de la imagen.
+
+El segundo aprovisionador es uden tipo shell que apunta a la ruta relativa a un script de bash. Packer utiliza estos aprovisionadores para personalizar la imagen.
+
+[source,json]
+----
+"provisioners": [
+    {
+        "type": "file",
+        "source": "../tf-packer.pub",
+        "destination": "/tmp/tf-packer.pub"
+      },
+    {
+        "type": "shell",
+        "script": "../scripts/setup.sh"
+    }
+]
+
+----
+
+===== Script de aprovisionamiento
+
+En la raíz del directorio `iac-libro-packer`, creamos el directorio `scripts`
+
+[source,bash]
+----
+$ mkdir scripts
+----
+
+Nos cambiamos al directorio recién creado
+[source,bash]
+----
+$ cd scripts
+----
+
+Creamos el script `setup.sh`
+
+[source,bash]
+----
+#!/bin/bash
+set -e
+
+# Instalar dependencias
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
+sudo apt-get -y -qq install curl wget git vim apt-transport-https ca-certificates
+sudo add-apt-repository ppa:longsleep/golang-backports -y
+sudo apt -y -qq install golang-go
+
+# Configurar no-password sudo para el grupo "hashicorp" y agregando el usuario "terraform"
+sudo groupadd -r hashicorp
+sudo useradd -m -s /bin/bash terraform
+sudo usermod -a -G hashicorp terraform
+sudo cp /etc/sudoers /etc/sudoers.orig
+echo "terraform  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/terraform
+
+# Instalar la llave SSH
+sudo mkdir -p /home/terraform/.ssh
+sudo chmod 700 /home/terraform/.ssh
+sudo cp /tmp/tf-packer.pub /home/terraform/.ssh/authorized_keys
+sudo chmod 600 /home/terraform/.ssh/authorized_keys
+sudo chown -R terraform /home/terraform/.ssh
+sudo usermod --shell /bin/bash terraform
+
+# Crear el path GOPATH para el usuario de  Terraform y descargar la aplicación web desde github
+
+sudo -H -i -u terraform -- env bash << EOF
+whoami
+echo ~terraform
+
+cd /home/terraform
+
+export GOROOT=/usr/lib/go
+export GOPATH=/home/terraform/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+go get -d github.com/hashicorp/learn-go-webapp-demo
+EOF
+----
+
+
+Este script instala las dependencias necesarias, agrega el usuario terraform al grupo sudo, instala la clave SSH creada anteriormente y descarga una aplicación web  en GoLang de muestra.
+
+==== Construir la imagen
+
+Ejecuta el comando de construcción de Packer pasando como argumentola plantilla de imagen.
+
+Nos cambiamos al directorio `imagenes`
+[source,bash]
+----
+$ cd images
+----
+
+Construimos la imagen
+[source,bash]
+----
+$ packer build image.json
+----
+
+Debes ver una salida similar a esta
+[source,bash]
+----
+==> amazon-ebs: Prevalidating any provided VPC information
+==> amazon-ebs: Prevalidating AMI Name: learn-packer 1594419525
+    amazon-ebs: Found Image ID: ami-0fcf65d66fe3e1f92
+==> amazon-ebs: Creating temporary keypair: packer_5f08e945-d87e-c0e0-9c06-127cb40d51f4
+==> amazon-ebs: Creating temporary security group for this instance: packer_5f08e947-d29d-8982-903a-f1532932d397
+==> amazon-ebs: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+==> amazon-ebs: Launching a source AWS instance...
+==> amazon-ebs: Adding tags to source instance
+    amazon-ebs: Adding tag: "Name": "Packer Builder"
+    amazon-ebs: Instance ID: i-0208315d85b166c4b
+==> amazon-ebs: Waiting for instance (i-0208315d85b166c4b) to become ready...
+==> amazon-ebs: Using ssh communicator to connect: 54.81.101.149
+==> amazon-ebs: Waiting for SSH to become available...
+==> amazon-ebs: Connected to SSH!
+==> amazon-ebs: Uploading ../tf-packer.pub => /tmp/tf-packer.pub
+newkey.pub 574 B / 574 B [===============================================] 100.00% 0s
+==> amazon-ebs: Provisioning with shell script: ../scripts/setup.sh
+    amazon-ebs: Reading package lists...
+    amazon-ebs: Building dependency tree...
+    amazon-ebs: Reading state information...
+==> amazon-ebs: Stopping the source instance...
+    amazon-ebs: Stopping instance
+==> amazon-ebs: Waiting for the instance to stop...
+==> amazon-ebs: Creating AMI learn-packer 1594419525 from instance i-0208315d85b166c4b
+    amazon-ebs: AMI: ami-06cb92a18a30fec16
+==> amazon-ebs: Waiting for AMI to become ready...
+==> amazon-ebs: Terminating the source AWS instance...
+==> amazon-ebs: Cleaning up any extra volumes...
+==> amazon-ebs: No volumes to clean up, skipping
+==> amazon-ebs: Deleting temporary security group...
+==> amazon-ebs: Deleting temporary keypair...
+Build 'amazon-ebs' finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> amazon-ebs: AMIs were created:
+us-east-1: ami-06cb92a18a30fec16
+----
+
+La última línea de la salida es la ID de AMI que debemos pasar a la configuración de Terraform en el siguiente paso.
+
+
+=== Desplegar imagenes de Packer con Terraform
+
+
+La AMI es el artefacto resultant de la ejecución de Packer y está disponible en la cuenta de AWS en la sección Imágenes de EC2. Puedes visitar la consola web de AWS para ver este ID de AMI nuevamente.
+
+Para utilizar esta AMI en el entorno de Terraform, creamos un diretorio llamado `instancias`
+[source,bash]
+----
+$ mkdir instancias
+----
+
+Nos cambiamos al directorio recién creado
+[source,bash]
+----
+$ cd instancias
+----
+
+Creamos una plantilla de terraform `main.tf `
+
+[source,bash]
+----
+
+provider "aws" {
+  region = var.region
+}
+
+resource "aws_vpc" "vpc" {
+  cidr_block           = var.cidr_vpc
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+}
+
+resource "aws_subnet" "subnet_public" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = var.cidr_subnet
+}
+
+resource "aws_route_table" "rtb_public" {
+  vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+}
+
+resource "aws_route_table_association" "rta_subnet_public" {
+  subnet_id      = aws_subnet.subnet_public.id
+  route_table_id = aws_route_table.rtb_public.id
+}
+
+resource "aws_security_group" "sg_22_80" {
+  name   = "sg_22"
+  vpc_id = aws_vpc.vpc.id
+
+  # SSH access from the VPC
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_instance" "web" {
+  ami                         = "ami-YOUR-AMI-ID"
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.subnet_public.id
+  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
+  associate_public_ip_address = true
+
+  tags = {
+    Name = "Learn-Packer"
+  }
+}
+
+output "id" {
+  value = aws_instance.web.public_ip
+}
+
+----
+
+Edita el atributo ami con el ID de AMI que se generó de la construcción de Packer.
+
+Crea un nuevo archivo llamado `terraform.tfvars` y agrega la región donde se almacena la imagen como variable. Si personalizaste la región que te dio a Packer, debes cambiar esta región para que coincida, o Terraform no podrá acceder a la imagen.
+
+[source,bash]
+----
+region = "us-east-1"
+----
+
+Guarda este archivo y luego inicializa y aplica la configuración de Terraform.
+
+[source,bash]
+----
+$ terraform init && terraform apply
+----
+
+Escriba sí cuando se  solicite crear la instancia. El resultado final es la dirección IP de la instancia. 
+
+La instancia ya contiene la llave SSH para realizar la conexión , porque terraform usó la AMI que se construyó previamente con Packer. El uso de una AMI construida con Packer hace que la implementación de instancias masivas sea más rápida y coherente que la configuración manual de las instancias.
+
+==== Verificar la instancia
+
+Conectate a la instancia a través de SSH con el atributo obteniendo la ip del atributo `aws_instance.web.public_ip` 
+
+[source,bash]
+----
+$ ssh terraform@$(echo "aws_instance.web.public_ip" | terraform console) -i ../tf-packer
+----
+
+Ahora tienes acceso SSH a tus instancias de AWS sin crear una clave SSH en AWS. Esto es útil si tu organización mantiene pares de claves fuera de AWS.
+
+Navega hasta el directorio de Go.
+[source,bash]
+----
+$ cd go/src/github.com/hashicorp/learn-go-webapp-demo
+----
+Inicie la aplicación web demo.
+[source,bash]
+----
+$ go run webapp.go
+----
+En el navegador web, navega hasta la dirección IP de la instancia y el puerto 8080 para ver la aplicación que implementaste.
+
+
+==== Destruye la instancia
+
+Evita cargos innecesarios en tu cuenta de AWS destruyendo su instancia en Terraform.
+[source,bash]
+----
+$ terraform destruir
+----
+
+Escribe sí cuando se  solicite en la terminal la confirmación.
+
+Esto no destruirá la imagen de Packer. 
