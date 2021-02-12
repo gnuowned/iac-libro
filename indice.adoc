@@ -1,0 +1,24 @@
+= Índice
+
+////
+Este es un espacio para integrar el roadmap con los puntos que se desean cubrir en el libro
+
+Una vez integrado todo el contenido, servirá también como el índice de la obra
+////
+
+
+== xref:cap001.adoc#level01_01[Capítulo 1 - Introducción]
+
+=== xref:cap001.adoc#level02_01[Automatización de Infraestructura]
+=== Manejadores de configuración
+=== El crecimiento de la popularidad de IaC
+
+== Capítulo 2. Caso de estudio
+
+== Capítulo 3. Introducción a Terraform
+=== Características
+=== Casos de uso
+=== Instalación de _Terraform_
+==== Instalación Manual
+===== Mac o Linux
+==== Windows
