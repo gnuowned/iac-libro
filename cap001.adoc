@@ -1,8 +1,22 @@
 == Capítulo 1. Introducción
 
-Para entender la infraestructura como código (IaC por sus siglas en inglés) primero debemos entender qué es infraestructura y qué es código. Infraestructura en el contexto de informática, es el hardware, físico, virtual o lógico que soporta una aplicación o plataforma. Del mismo modo, el código son las instrucciones que permiten crear una aplicación o software. Luego entonces, la infraestructura como código, es la descripción del estado deseado de la configuración de esta infraestructura en un documento, normalmente escrito en texto plano. Al estar escrito en texto plano, esta descripción puede tratarse de la misma manera que se trata un código de software, donde podemos versionarlo, probarlo, compartirlo, etc.
+Para entender la infraestructura como código (IaC por sus siglas en inglés)
+primero debemos entender qué es infraestructura y qué es código.
+Infraestructura en el contexto de informática, es el hardware, físico, virtual
+o lógico que soporta una aplicación o plataforma. Del mismo modo, el código son
+las instrucciones que permiten crear una aplicación o software. Luego entonces,
+la infraestructura como código, es la descripción del estado deseado de la
+configuración de esta infraestructura en un documento, normalmente escrito en
+texto plano. Al estar escrito en texto plano, esta descripción puede tratarse
+de la misma manera que se trata un código de software, donde podemos
+versionarlo, probarlo, compartirlo, etc.
 
-Para hacer esto realidad, debemos contar con un intermediario o intérprete que comprenda esta descripción y la convierta en una configuración que sea entendida por la infraestructura. Esto nos permite automatizar la infraestructura de tal manera que esa configuración la tratemos como software, esto nos da varias ventajas que estaremos discutiendo durante la presente obra, algunas de ellas son:
+Para hacer esto realidad, debemos contar con un intermediario o intérprete que
+comprenda esta descripción y la convierta en una configuración que sea
+entendida por la infraestructura. Esto nos permite automatizar la
+infraestructura de tal manera que esa configuración la tratemos como software,
+esto nos da varias ventajas que estaremos discutiendo durante la presente obra,
+algunas de ellas son:
 
 * Automatización declarativa en vez de imperativa
 * Versionamiento de la configuración
@@ -12,19 +26,63 @@ Para hacer esto realidad, debemos contar con un intermediario o intérprete que 
 === Automatización de Infraestructura
 
 
-La automatización de la infraestructura no es un tema nuevo, es una prácica que existe hace décadas. Dado a la necesidad de hacer más eficiente el despliegue de esta infraestructura, esto se hace mediante *_scripts_* o desarrollos que permiten que esta infraestructura se despliegue automáticamente, el problema con este acercamiento, es que no solo le tenemos que planear qué se va a desplegar, si no tambien cómo se desplegará, por lo que es una automatización *imperativa*. Esto nos acarrea un problema dado que muchas veces la infraestructura no puede ser cambiada una vez desplegada, puesto que en la automatización debemos tener en cuenta todas las excepciones que pudieran ocurrir durante el ciclo de vida de la infraestructura. Por ende, la automatización imperativa funciona muy bien solo para el despliegue de nueva infraestructura, pero no para mantener el ciclo de vida completa de ella. Es decir, despliegue, cambios y decomización.
+La automatización de la infraestructura no es un tema nuevo, es una prácica que
+existe hace décadas. Dado a la necesidad de hacer más eficiente el despliegue
+de esta infraestructura, esto se hace mediante *_scripts_* o desarrollos que
+permiten que esta infraestructura se despliegue automáticamente, el problema
+con este acercamiento, es que no solo le tenemos que planear qué se va a
+desplegar, si no tambien cómo se desplegará, por lo que es una automatización
+*imperativa*. Esto nos acarrea un problema dado que muchas veces la
+infraestructura no puede ser cambiada una vez desplegada, puesto que en la
+automatización debemos tener en cuenta todas las excepciones que pudieran
+ocurrir durante el ciclo de vida de la infraestructura. Por ende, la
+automatización imperativa funciona muy bien solo para el despliegue de nueva
+infraestructura, pero no para mantener el ciclo de vida completa de ella. Es
+decir, despliegue, cambios y decomización.
 
-Más allá de la automatización, existe el concepto de *_orquestación_* en el que normalmente existe un software llamado *orquestador* (*_orchestrator_* en inglés) el cual cuenta con los conectores necesarios para automatizar el despliegue de las diferentes capas de la infraestructura: Almacenamiento, Red, Computo, Sistema Operativo, etc).
+Más allá de la automatización, existe el concepto de *_orquestación_* en el que
+normalmente existe un software llamado *orquestador* (*_orchestrator_* en
+inglés) el cual cuenta con los conectores necesarios para automatizar el
+despliegue de las diferentes capas de la infraestructura: Almacenamiento, Red,
+Computo, Sistema Operativo, etc).
 
-Esto permite "orquestrar" el despliegue de la pila completa de la infraestructura. Pero de la misma manera que se hace al automatizar de manera imperativa, capa por capa, la orquestación imperativa no permite manejar el ciclo de vida completo de la infraestructura.
+Esto permite "orquestrar" el despliegue de la pila completa de la
+infraestructura. Pero de la misma manera que se hace al automatizar de manera
+imperativa, capa por capa, la orquestación imperativa no permite manejar el
+ciclo de vida completo de la infraestructura.
 
 === Manejadores de configuración
 
 
-Los manejadores de configuración, han existido, de igual manera, desde hace décadas, son piezas de software que nos permiten mantener la configuración de un sistema operativo o aplicación de manera declarativa. Es decir, en vez de indicar el qué y el cómo, se describe el qué, es decir se declara el estado deseado de la configuración del Sistema Operativo o aplicación y es el manejador de configuración quien hace la conciliación entre el estado declarado y el estado actual. Es decir, que solo modifica las partes de la configuración que no concuerdan con el estado deseado. Como se manifestó, los Manejadores de configuración (*_Configuration Manager_* en inglés) fueron concebidos para mantener la configuración del Sistema Operativo y/o la aplicación. Con el avance de las tecnologías de virtualización y del concepto de *_Software Defined_*, el despliegue y configuración de la infraestructura, también puede ser declarada y manejada como si de un sistema operativo o una aplicación se tratara.
+Los manejadores de configuración, han existido, de igual manera, desde hace
+décadas, son piezas de software que nos permiten mantener la configuración de
+un sistema operativo o aplicación de manera declarativa. Es decir, en vez de
+indicar el qué y el cómo, se describe el qué, es decir se declara el estado
+deseado de la configuración del Sistema Operativo o aplicación y es el
+manejador de configuración quien hace la conciliación entre el estado declarado
+y el estado actual. Es decir, que solo modifica las partes de la configuración
+que no concuerdan con el estado deseado. Como se manifestó, los Manejadores de
+configuración (*_Configuration Manager_* en inglés) fueron concebidos para
+mantener la configuración del Sistema Operativo y/o la aplicación. Con el
+avance de las tecnologías de virtualización y del concepto de *_Software
+Defined_*, el despliegue y configuración de la infraestructura, también puede
+ser declarada y manejada como si de un sistema operativo o una aplicación se
+tratara.
 
 === El crecimiento de la popularidad de IaC
 
 
-Sin duda, la adopción del *_Cloud Computing_* ha permitido que la IaC se haya popularizado. La disponibilización de las interfaces de programabilidad (APIs), así como el cobro por tiempo utilizado de la infraestructura, han hecho que l IaC sea muy popular para este tipo de modelos de consumo. Sin embargo, también ha influenciado a los fabricantes de infraestructura física, y estos han empezado a disponibilizar _APIs_, así como también han separado el plano de control del plano de datos, que es el principio del _hardware_ definido por _software_. Empresas como *_Hashicorp_* han creado soluciones de IaC que estaremos usando en esta obra, que lleva por nombre *_Terraform_*. Terraform es una herramienta de código abierto para infraestructura como código que provee un flujo de trabajo por linea de comandos consistente para manejar cientos de servicios de nube. Terraform codifica las _APIs_ de las nubes en archivos de configuración declarativa. footnote:[https://www.terraform.io/]
+Sin duda, la adopción del *_Cloud Computing_* ha permitido que la IaC se haya
+popularizado. La disponibilización de las interfaces de programabilidad (APIs),
+así como el cobro por tiempo utilizado de la infraestructura, han hecho que l
+IaC sea muy popular para este tipo de modelos de consumo. Sin embargo, también
+ha influenciado a los fabricantes de infraestructura física, y estos han
+empezado a disponibilizar _APIs_, así como también han separado el plano de
+control del plano de datos, que es el principio del _hardware_ definido por
+_software_. Empresas como *_Hashicorp_* han creado soluciones de IaC que
+estaremos usando en esta obra, que lleva por nombre *_Terraform_*. Terraform es
+una herramienta de código abierto para infraestructura como código que provee
+un flujo de trabajo por linea de comandos consistente para manejar cientos de
+servicios de nube. Terraform codifica las _APIs_ de las nubes en archivos de
+configuración declarativa. footnote:[https://www.terraform.io/]
 

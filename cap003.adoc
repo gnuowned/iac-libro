@@ -1,12 +1,27 @@
 == Capítulo 3. Introducción a Terraform
 
-Como ya se platicó en el Capítulo 1, durante el desarrollo de esta obra estaremos utilizando la versión abierta y gratuita de *_Hashicorp Terraform_*, la cual ha tomado mucha popularidad entre intenieros que hacen *_DEVOPS_* y *_CI/CD_*, temas que trataremos más adelante. Y no es casualidad, _Terraform_ ofrece un entorno bien documentado y con cientos de integraciones que permiten a las organizaciones tratar su infraestructura como código al escribir archivos con la declaración del estado deseado de las configuraciones. _Terraform_ usa su propio lenguage llamado *_Hashicorp Configuration Language (HLC)_* que permite una descripción concisa de los recursos usando bloques de código, argumentos y expresiones.
+Como ya se platicó en el Capítulo 1, durante el desarrollo de esta obra
+estaremos utilizando la versión abierta y gratuita de *_Hashicorp Terraform_*,
+la cual ha tomado mucha popularidad entre intenieros que hacen *_DEVOPS_* y
+*_CI/CD_*, temas que trataremos más adelante. Y no es casualidad, _Terraform_
+ofrece un entorno bien documentado y con cientos de integraciones que permiten
+a las organizaciones tratar su infraestructura como código al escribir archivos
+con la declaración del estado deseado de las configuraciones. _Terraform_ usa
+su propio lenguage llamado *_Hashicorp Configuration Language (HLC)_* que
+permite una descripción concisa de los recursos usando bloques de código,
+argumentos y expresiones.
 
-De la misma manera, _Terraform_ permite correr las verificaciones necesarias antes de aplicar las configuraciones deseadas para asegurarse que los cambios a realizar son factibles, y el operador tiene oportunidad de entender qué cambios sucederán y como afectará el ambiente desplegado. Una vez hecho esto, el operador puede proceder a aplicar los cambios, para poder llegar al estado deseado solo modificando el delta entre el estado actual y el deseado.
+De la misma manera, _Terraform_ permite correr las verificaciones necesarias
+antes de aplicar las configuraciones deseadas para asegurarse que los cambios a
+realizar son factibles, y el operador tiene oportunidad de entender qué cambios
+sucederán y como afectará el ambiente desplegado. Una vez hecho esto, el
+operador puede proceder a aplicar los cambios, para poder llegar al estado
+deseado solo modificando el delta entre el estado actual y el deseado.
 
 [NOTE]
 ====
-Esta introducción, casi en su totalidad es una traducción simple de la documentación oficial de Hashicorp <<intro_terraform>>.
+Esta introducción, casi en su totalidad es una traducción simple de la
+documentación oficial de Hashicorp <<intro_terraform>>.
 ====
 
 .Código Ejemplo escrito en HCL para AWS
@@ -36,19 +51,30 @@ variable "availability_zone" {
 Algunas de las características más importantes de _Terraform_ son:
 
 
-* *Archivos de Configuración Declarativa:* Definición de Infraestructura como Código para manejar el ciclo de vida completo, creación de nuevos recursos, manejo de los existentes así como la decomisación cuando estos ya no son necesarios.
-* *Modulos instalables:* Intalación automática de modulos de la comunidad o terceros desde el registro de _Hashicorp_ por medio de `terraform init`.
-* *Planeación y predicción de cambios:* _Terraform_ permite a los operadores hacer cambios a la infraestructura de manera segura y predectible.
+* *Archivos de Configuración Declarativa:* Definición de Infraestructura como
+  Código para manejar el ciclo de vida completo, creación de nuevos recursos,
+  manejo de los existentes así como la decomisación cuando estos ya no son
+  necesarios.
+* *Modulos instalables:* Intalación automática de modulos de la comunidad o
+  terceros desde el registro de _Hashicorp_ por medio de `terraform init`.
+* *Planeación y predicción de cambios:* _Terraform_ permite a los operadores
+  hacer cambios a la infraestructura de manera segura y predectible.
 * *Graficación de dependencias
-* *Manejo del estado:* Mapeo de la configuración de los recursos del mundo real, mantenimiento de los _metadatos_ y mejoramiento del _performance_ en infraestructuras grandes
-* *Registro de más de 500 proveedores:* El operador puede escoger de una serie de proveedores para las diferentes plataformas de nube disponibles en el mercado.
+* *Manejo del estado:* Mapeo de la configuración de los recursos del mundo
+  real, mantenimiento de los _metadatos_ y mejoramiento del _performance_ en
+  infraestructuras grandes
+* *Registro de más de 500 proveedores:* El operador puede escoger de una serie
+  de proveedores para las diferentes plataformas de nube disponibles en el
+  mercado.
 
 === Casos de uso
 
-Algunos de los casos de uso que se pueden cubrir con terraform son: footnote:[https://www.terraform.io/intro/use-cases.html]
+Algunos de los casos de uso que se pueden cubrir con terraform son:
+footnote:[https://www.terraform.io/intro/use-cases.html]
 
 * Despliegue de aplicaciones en _Heruku_.
-* Aplicaciones Multi Capa. footnote:[Este es el caso de uso específico que estaremos cubriendo en esta obra.]
+* Aplicaciones Multi Capa. footnote:[Este es el caso de uso específico que
+  estaremos cubriendo en esta obra.]
 * _Clusteres_ de Autoservicio.
 * Demostraciones de _Software_.
 * Ambientes deshechables.
@@ -56,26 +82,41 @@ Algunos de los casos de uso que se pueden cubrir con terraform son: footnote:[ht
 
 === Instalación de _Terraform_
 
-En esta sección estaremos discutiendo la instalación del binario de _Terraform_ en nuestro equipo personal, donde crearemos un ambiente de desarrollo para escribir, probar y desplegar nuestra infraestructura. Existen varios métodos para la instalación de _Terraform_ a continuación discutiremos los más importantes.
+En esta sección estaremos discutiendo la instalación del binario de _Terraform_
+en nuestro equipo personal, donde crearemos un ambiente de desarrollo para
+escribir, probar y desplegar nuestra infraestructura. Existen varios métodos
+para la instalación de _Terraform_ a continuación discutiremos los más
+importantes.
 
 ==== Instalación Manual
 
-Para la instalación manual de _Terraform_, necesitamos encontrar el paquete apropiado footnote:[https://www.terraform.io/downloads.html] para nuestro sistema operativo y bajarlo, este será un archivo _zip_.
+Para la instalación manual de _Terraform_, necesitamos encontrar el paquete
+apropiado footnote:[https://www.terraform.io/downloads.html] para nuestro
+sistema operativo y bajarlo, este será un archivo _zip_.
 
-Una vez que se haya bajado _Terraform_, procederemos a expander el archivo _zip_. Encontraremos que es un solo binario llamado `terraform`. Todos los demás archivos que pudiera contener el archivo _zip_ pueden ser borrados de manera segura sin que esto afecte el funcionamiento de _Terraform_.
+Una vez que se haya bajado _Terraform_, procederemos a expander el archivo
+_zip_. Encontraremos que es un solo binario llamado `terraform`. Todos los
+demás archivos que pudiera contener el archivo _zip_ pueden ser borrados de
+manera segura sin que esto afecte el funcionamiento de _Terraform_.
 
-Finalmente, nos aseguraremos de que `terraform` se encuentre disponible en nuestro `PATH`. Esto se realiza de manera diferente, dependiendo el sistema operativo.
+Finalmente, nos aseguraremos de que `terraform` se encuentre disponible en
+nuestro `PATH`. Esto se realiza de manera diferente, dependiendo el sistema
+operativo.
 
 ===== Mac o Linux
 
-Obtenemos la lista de rutas que están disponibles en la variable de entorno `PATH`
+Obtenemos la lista de rutas que están disponibles en la variable de entorno
+`PATH`
 
 [source,batch]
 ----
 echo $PATH
 ----
 
-Movemos el binario te _Terraform_ a uno de las rutas listadas. Este comando asume que el binario se encuentra en el archivo de descargas y que `PATH` contiene `/usr/local/bin`, personaliza en caso de las rutas en tu sistema operativo sean diferentes.
+Movemos el binario te _Terraform_ a uno de las rutas listadas. Este comando
+asume que el binario se encuentra en el archivo de descargas y que `PATH`
+contiene `/usr/local/bin`, personaliza en caso de las rutas en tu sistema
+operativo sean diferentes.
 
 [source,batch]
 ----
@@ -84,13 +125,18 @@ mv ~/Downloads/terraform /usr/local/bin/
 
 ==== Windows
 
-En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica: `https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
+En la siguiente dirección de internet, podemos encontrar las instrucciones
+exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica:
+`https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
 
 ==== Instalación con _Homebrew_ en _MacOS_
 
-_Homebrew_ es un manejador de paquetes de fuente abierta para el sistema operativo _MacOS_. Instala la _formula_ oficial de _Terraform_ desde la terminal.
+_Homebrew_ es un manejador de paquetes de fuente abierta para el sistema
+operativo _MacOS_. Instala la _formula_ oficial de _Terraform_ desde la
+terminal.
 
-Primero, installamos el _tap_ de _HashiCorp_, un repositorio para todos los paquetes de _Homebrew_ de la compañia:
+Primero, installamos el _tap_ de _HashiCorp_, un repositorio para todos los
+paquetes de _Homebrew_ de la compañia:
 
 [source,batch]
 ----
@@ -113,7 +159,8 @@ brew upgrade hashicorp/tap/terraform
 
 ==== Instalación con _Chocolatey_ en _Windows_
 
-_Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_. Installamos el paquete de _Terraform_ desde la linea de comandos.
+_Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_.
+Installamos el paquete de _Terraform_ desde la linea de comandos.
 
 [source,batch]
 ----
@@ -136,7 +183,8 @@ Agregamos los repositorios oficiales de _HashiCorp_ para _Linux_.
 
 [source,batch]
 ----
-sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com
+$(lsb_release -cs) main"
 ----
 
 Actualización e instalación.
@@ -155,7 +203,8 @@ Instalamos `yum-config-manager` para manejar repositorios.
 sudo yum install -y yum-utils
 ----
 
-Usamos `yum-config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+Usamos `yum-config-manager` para agregar el repositorio oficial de _HachiCorp_
+para _Linux_
 
 [source,batch]
 ----
@@ -178,7 +227,8 @@ Instalamos `dnf config-manager` para manejar repositorios.
 sudo dnf install -y dnf-plugins-core
 ----
 
-Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_
+para _Linux_
 
 [source,batch]
 ----
@@ -194,7 +244,8 @@ sudo dnf -y install terraform
 
 ==== Verificación de la instalación.
 
-Para verificar la instalación abrimos una nueva terminal y ejecutamos `terraform -help`
+Para verificar la instalación abrimos una nueva terminal y ejecutamos
+`terraform -help`
 
 [source,batch]
 ----
@@ -207,20 +258,24 @@ less common or more advanced commands.
 ...
 ----
 
-Cualquier sub comando despues de `terraform -help` permite aprender más sobre el mismo.
+Cualquier sub comando despues de `terraform -help` permite aprender más sobre
+el mismo.
 
 [source,batch]
 ----
 terraform -help plan
 ----
 
-Con esto finalizamos la instalación de _Terraform_ y estamos listos para empezar a construir infraestructura como código.
+Con esto finalizamos la instalación de _Terraform_ y estamos listos para
+empezar a construir infraestructura como código.
 
 === Contrucción de Infraestructura
 
-Con _Terraform_ installado, estamos listos para crear nuestra primera infraestructura.
+Con _Terraform_ installado, estamos listos para crear nuestra primera
+infraestructura.
 
-Vamos a aprovisionar una *_Amazon Machine Image (AMI)_* en *_AWS_* esto lo haremos de esta manera, dado que las _AMIs_ son muy populares.
+Vamos a aprovisionar una *_Amazon Machine Image (AMI)_* en *_AWS_* esto lo
+haremos de esta manera, dado que las _AMIs_ son muy populares.
 
 ==== Pre requisitos
 
@@ -230,13 +285,17 @@ Para continuar, necesitamos:
 * La intefaz de linea de comando de _AWS_
 * Las credenciales de _AWS_ configuradas localmente
 
-Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y configuración de una cuenta de Amazon Web Services]
+Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y
+configuración de una cuenta de Amazon Web Services]
 
 ==== Escribir configuraciones
 
-El conjunto de archivos usado para describir la infraestructura en _Terraform_ es conocido como _Terraform Configuration_. Vamos a escribir nuestra primera configuración ahora para lanzar una instancia de _EC2 de AWS_.
+El conjunto de archivos usado para describir la infraestructura en _Terraform_
+es conocido como _Terraform Configuration_. Vamos a escribir nuestra primera
+configuración ahora para lanzar una instancia de _EC2 de AWS_.
 
-Cada configuración debe estar en su propio directorio. Crearemos un directorio para esta nueva configuración.
+Cada configuración debe estar en su propio directorio. Crearemos un directorio
+para esta nueva configuración.
 
 [source,bash]
 ----
@@ -249,7 +308,9 @@ Nos cambiamos al directorio recién creado
 cd iac-libro-aws-instancia
 ----
 
-Pegamos la configuración que está a continuación dentro de un archivo que tenga por nombre `ejemplo.tf` y lo guardamos. _Terraform_ carga todos los archivos en el directorio actual que tengan la extención `.tf`
+Pegamos la configuración que está a continuación dentro de un archivo que tenga
+por nombre `ejemplo.tf` y lo guardamos. _Terraform_ carga todos los archivos en
+el directorio actual que tengan la extención `.tf`
 
 
 [source,bash]
@@ -257,35 +318,74 @@ Pegamos la configuración que está a continuación dentro de un archivo que ten
 include::{sourcedir}/cap003/ejemplo.tf[]
 ----
 
-Esta es una configuración completa de _Terraform_ y está lista para ser aplicada. En las siguientes secciones, veremos como funciona cada uno de estos bloques en más detalle.
+Esta es una configuración completa de _Terraform_ y está lista para ser
+aplicada. En las siguientes secciones, veremos como funciona cada uno de estos
+bloques en más detalle.
 
 ===== Bloques de _Terraform_
 
-El bloque `terraform {}` es requerido para que _Terraform_ conozca qué proveedor tiene que descargar desde el registro de _Terraform_. En la configuración anterior, el proveedor `aws` está definido como `hashicorp/aws` que es una abreviación de `redistry.terraform.io/hashicorp/aws`.
+El bloque `terraform {}` es requerido para que _Terraform_ conozca qué
+proveedor tiene que descargar desde el registro de _Terraform_. En la
+configuración anterior, el proveedor `aws` está definido como `hashicorp/aws`
+que es una abreviación de `redistry.terraform.io/hashicorp/aws`.
 
-También podemos asignar una versión definida en el bloque `required_providers`. El argumento `version` es opcional, pero recomendado.
+También podemos asignar una versión definida en el bloque `required_providers`.
+El argumento `version` es opcional, pero recomendado.
 
 ===== Proveedores
 
-El bloque `provider` configura el nombre del proveedor, en nuestro caso `aws`, que es responsable de crear y manejar los recursos. Un proveedor es un _plugin_ que _Terraform_ usa para traducir las interacciones con las _API_ del servicio a administrar. Un proveedor es el responsable por entender tales interacciones y exponer los recursos. Por el hecho de que _Terraform_ puede interactuar con cualquier _API_, podemos representar casi cualquier tipo de infraestructura como recursos en _Terraform_.
+El bloque `provider` configura el nombre del proveedor, en nuestro caso `aws`,
+que es responsable de crear y manejar los recursos. Un proveedor es un _plugin_
+que _Terraform_ usa para traducir las interacciones con las _API_ del servicio
+a administrar. Un proveedor es el responsable por entender tales interacciones
+y exponer los recursos. Por el hecho de que _Terraform_ puede interactuar con
+cualquier _API_, podemos representar casi cualquier tipo de infraestructura
+como recursos en _Terraform_.
 
-El atributo `profile` en nuestro bloque de proveedor se refiere, en este caso, a las credenciales de _AWS_ almacenadas en la el archivo de configuración de _AWS_, que se creó cuando se hizo la configuración del _CLI_ de _AWS_. La mejor práctica recomendada, es que no se use credenciales directamente en los archivos `.tf`.
+El atributo `profile` en nuestro bloque de proveedor se refiere, en este caso,
+a las credenciales de _AWS_ almacenadas en la el archivo de configuración de
+_AWS_, que se creó cuando se hizo la configuración del _CLI_ de _AWS_. La mejor
+práctica recomendada, es que no se use credenciales directamente en los
+archivos `.tf`.
 
-Pueden existir múltiples bloques de proveedor en caso de ser necesario. Podemos, incluso, usar múltiples proveedores juntos. Por ejemplo, podemos pasar el identificador de una intancia de _AWS_ para monitorear tal recurso con _DataDog_.
+Pueden existir múltiples bloques de proveedor en caso de ser necesario.
+Podemos, incluso, usar múltiples proveedores juntos. Por ejemplo, podemos pasar
+el identificador de una intancia de _AWS_ para monitorear tal recurso con
+_DataDog_.
 
 ===== Recursos
 
-El bloque de `resources` define una pieza de la infraestructura. Un recurso puede er un componente físico o virtual como una instancia de _EC2_, o puede ser un recurso lógico como una _IP elástica_.
+El bloque de `resources` define una pieza de la infraestructura. Un recurso
+puede er un componente físico o virtual como una instancia de _EC2_, o puede
+ser un recurso lógico como una _IP elástica_.
 
-El bloque de recursos tiene dos entradas antes del bloque como tal: el tipo de recurso y el nombre del recurso. en este ejemplo, el tipo de recurso es `aws_instance` y el nombre es `ejemplo`. El prefijo en el tipo de recurso se mapea al proveedor. En nuestro caso `aws_instance` automáticamente le dice a _Terraform_ que este será manejado por el proveedor _aws_.
+El bloque de recursos tiene dos entradas antes del bloque como tal: el tipo de
+recurso y el nombre del recurso. en este ejemplo, el tipo de recurso es
+`aws_instance` y el nombre es `ejemplo`. El prefijo en el tipo de recurso se
+mapea al proveedor. En nuestro caso `aws_instance` automáticamente le dice a
+_Terraform_ que este será manejado por el proveedor _aws_.
 
-Los argumentos del recurso están dentro del bloque del recurso. Los artumentos pueden ser cosas como el tamaño de la máquina, el nombre de la imagen del disco, o identificadores del _VPC_ donde se desplegará la instancia. Para entender los argumentos opcionales y requeridos de cada tipo de recurso, es necesario consultar los documentos de referencia de _HashiCorp_ footnote:[https://www.terraform.io/docs/providers/index.html]. En el caso de la instancia de _EC2_ que crearemos, especificamos un _AMI_ para _Ubuntu_ y el tamaño requerido será `t2.micro` que califica como _free tier_ en nuestra cuenta de _AWS_.
+Los argumentos del recurso están dentro del bloque del recurso. Los artumentos
+pueden ser cosas como el tamaño de la máquina, el nombre de la imagen del
+disco, o identificadores del _VPC_ donde se desplegará la instancia. Para
+entender los argumentos opcionales y requeridos de cada tipo de recurso, es
+necesario consultar los documentos de referencia de _HashiCorp_
+footnote:[https://www.terraform.io/docs/providers/index.html]. En el caso de la
+instancia de _EC2_ que crearemos, especificamos un _AMI_ para _Ubuntu_ y el
+tamaño requerido será `t2.micro` que califica como _free tier_ en nuestra
+cuenta de _AWS_.
 
 ==== Inicializando el directorio
 
-Cuando creamos una nueva configuración (o hacemos _checkout_ de una configuración existente desde el control de versiones) necesitamos inicializar el directorio con `terrarom init`.
+Cuando creamos una nueva configuración (o hacemos _checkout_ de una
+configuración existente desde el control de versiones) necesitamos inicializar
+el directorio con `terrarom init`.
 
-_Terraform_ usa una arquitectura basada en _plugins_ que soporta cientos de proveedores de servicios de infraestructura. Inicializar un directorio de configuracion, descarga e instala los proveedores usados en la configuración qué, en este caso, es el proveedor `aws`. Los comandos subsecuentes, usarán los datos y configuraciones locales hechos durante la inicialización.
+_Terraform_ usa una arquitectura basada en _plugins_ que soporta cientos de
+proveedores de servicios de infraestructura. Inicializar un directorio de
+configuracion, descarga e instala los proveedores usados en la configuración
+qué, en este caso, es el proveedor `aws`. Los comandos subsecuentes, usarán los
+datos y configuraciones locales hechos durante la inicialización.
 
 Iniciemos el directorio.
 
@@ -316,20 +416,30 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ----
 
-_Terraform_ descarga el proveedor `aws` y lo instala en un subdirectorio oculto en el directorio actual. La salida muestra la versión del plugin que fue instalada.
+_Terraform_ descarga el proveedor `aws` y lo instala en un subdirectorio oculto
+en el directorio actual. La salida muestra la versión del plugin que fue
+instalada.
 
 ==== Formato y validación de la configuración
 
-Una mejor práctica es usar un formato consistente en los archivos y módulos escritos por diferentes equipos. El comando `terraform fmt` automáticamente actualiza la configuración en el directorio actual para una mejor lectura y consistencia.
+Una mejor práctica es usar un formato consistente en los archivos y módulos
+escritos por diferentes equipos. El comando `terraform fmt` automáticamente
+actualiza la configuración en el directorio actual para una mejor lectura y
+consistencia.
 
-Formatearemos nuestra configuración. _Terraform_ retornará los nombres de los archivos formateados. En este caso, nuestro archivo de configuración está de por sí formateado de manera correcta, es por eso que _Terraform_ no retornará ningún nombre de archivo.
+Formatearemos nuestra configuración. _Terraform_ retornará los nombres de los
+archivos formateados. En este caso, nuestro archivo de configuración está de
+por sí formateado de manera correcta, es por eso que _Terraform_ no retornará
+ningún nombre de archivo.
 
 [source,bash]
 ----
 $ terraform fmt
 ----
 
-Para validar que la configuración es sintáctimanete válida usamos el comando `terraform validate`. Si nuestra configuración es válida _Terraform_ retornará un mensaje exitoso.
+Para validar que la configuración es sintáctimanete válida usamos el comando
+`terraform validate`. Si nuestra configuración es válida _Terraform_ retornará
+un mensaje exitoso.
 
 [source,bash]
 ----
@@ -339,7 +449,8 @@ Success! The configuration is valid.
 
 ==== Creación de Infraestructura
 
-En el mismo directorio donde se encuentra `ejemplo.tf` corremos `terraform apply`. Debes ver una salida similar a la mostrada a continuación:
+En el mismo directorio donde se encuentra `ejemplo.tf` corremos `terraform
+apply`. Debes ver una salida similar a la mostrada a continuación:
 
 [source,bash]
 ----
@@ -380,16 +491,28 @@ Do you want to perform these actions?
 
 [TIP]
 ====
-Si tu configuración falla al aplicarse, quizá debas personalizar la región usada o remover el VPC por default.
+Si tu configuración falla al aplicarse, quizá debas personalizar la región
+usada o remover el VPC por default.
 ====
 
-Esta salida nos muestra el plan de ejecución, describiendo qué acciones tomará _Terraform_ para hacer los cambios en la infraestructura real para cumplir con el estado declarado en la configuración.
+Esta salida nos muestra el plan de ejecución, describiendo qué acciones tomará
+_Terraform_ para hacer los cambios en la infraestructura real para cumplir con
+el estado declarado en la configuración.
 
-El formato de la salida es similar al formato de _diff_ generado por herramientas como _Git_. La salida tiene un `+` junto a `aws_instance.ejemplo`, esto significa que _Terraform_ creará este recurso. Debajo de esto, muestra los atributos que serán configurados. Cuando el valor desplegado es `known after apply`, significa que ese valor no será conocido hasta que el recurso no sea creado.
+El formato de la salida es similar al formato de _diff_ generado por
+herramientas como _Git_. La salida tiene un `+` junto a `aws_instance.ejemplo`,
+esto significa que _Terraform_ creará este recurso. Debajo de esto, muestra los
+atributos que serán configurados. Cuando el valor desplegado es `known after
+apply`, significa que ese valor no será conocido hasta que el recurso no sea
+creado.
 
-_Terraform_ quedará en pausa y esperará la aprobación de los cambios antes de proceder. Si algo del plan parece incorrecto o peligroso, podemos abortar de manera segura y ningún cambio será realizado en nuestra infraestructura.
+_Terraform_ quedará en pausa y esperará la aprobación de los cambios antes de
+proceder. Si algo del plan parece incorrecto o peligroso, podemos abortar de
+manera segura y ningún cambio será realizado en nuestra infraestructura.
 
-Si el plan es aceptable, entonces escribimos `yes` en la entrada que nos pide confirmar para proceder. Ejecutar este plan tomará algunos minutos, dado que _Terraform_ espera a que la Instancia _EC2_ esté disponible.
+Si el plan es aceptable, entonces escribimos `yes` en la entrada que nos pide
+confirmar para proceder. Ejecutar este plan tomará algunos minutos, dado que
+_Terraform_ espera a que la Instancia _EC2_ esté disponible.
 
 [source,bash]
 ----
@@ -403,13 +526,22 @@ aws_instance.ejemplo: Creation complete after 34s [id=i-0f57d1b36088f27ae]
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ----
 
-¡Hemos creado infraestructura hecha con Terraform! En este momento, podemos visitar la consola de _EC2_ para confirmar que se haya creado la instancia. Para esto, hay que estar seguro que tengamos seleccionada la región que fue puesta en nuestra configuración del proveedor.
+¡Hemos creado infraestructura hecha con Terraform! En este momento, podemos
+visitar la consola de _EC2_ para confirmar que se haya creado la instancia.
+Para esto, hay que estar seguro que tengamos seleccionada la región que fue
+puesta en nuestra configuración del proveedor.
 
 ==== Inspección del estado.
 
-Cuando aplicamos la configuración, _Terraform_ escribió datos en un rachivo llamado `terraform.tfstate`. Este archivo ahora contiene los identificadores y propiedades de los recursos que _Terraform_ creó de tal manera que de ahora en adelante puede administrar y destruir los recursos.
+Cuando aplicamos la configuración, _Terraform_ escribió datos en un rachivo
+llamado `terraform.tfstate`. Este archivo ahora contiene los identificadores y
+propiedades de los recursos que _Terraform_ creó de tal manera que de ahora en
+adelante puede administrar y destruir los recursos.
 
-Debemos guardar este archivo de manera segura y distribuirlo solo a los miembros confiables del equipo quienes necesiten manejar nuestra infraestructura. En producción, la mejor práctica es que se almacene este estado de manera remota.
+Debemos guardar este archivo de manera segura y distribuirlo solo a los
+miembros confiables del equipo quienes necesiten manejar nuestra
+infraestructura. En producción, la mejor práctica es que se almacene este
+estado de manera remota.
 
 Inspeccionemos el estado actual usando el comando `terraform show`.
 
@@ -472,11 +604,16 @@ resource "aws_instance" "ejemplo" {
 }
 ----
 
-Cuando _Terraform_ creó esta instancia de _EC2_, también obtuvo mucha información sobre la misma. Estos valores pueden ser referenciados para configurar otros recursos o salidas, esto lo discutiremos más adelante.
+Cuando _Terraform_ creó esta instancia de _EC2_, también obtuvo mucha
+información sobre la misma. Estos valores pueden ser referenciados para
+configurar otros recursos o salidas, esto lo discutiremos más adelante.
 
 ===== Manejando el estado manualmente
 
-_Terraform_ tiene un comando llamado `terraform state` para el manejo avanzado del estado. Por ejemplo, si tenemos un archivo de estado muy grande, podemos listar los recursos que están en el estado, los cuales podemos obtenerlos al ejecutar el subcomando `list`.
+_Terraform_ tiene un comando llamado `terraform state` para el manejo avanzado
+del estado. Por ejemplo, si tenemos un archivo de estado muy grande, podemos
+listar los recursos que están en el estado, los cuales podemos obtenerlos al
+ejecutar el subcomando `list`.
 
 [source,bash]
 ----
@@ -486,15 +623,24 @@ aws_instance.ejemplo
 
 === Cambios a la Infraestructura
 
-Previamente, creamos nuestra primera infraestructura con _Terraform_: una instancia simple de _EC2_. En esta sección, haremos modificaciones a este recurso y veremos como _Terraform_ maneja estos cambios.
+Previamente, creamos nuestra primera infraestructura con _Terraform_: una
+instancia simple de _EC2_. En esta sección, haremos modificaciones a este
+recurso y veremos como _Terraform_ maneja estos cambios.
 
-La infraestructura está en constante evolución, y _Terraform_ fue hecho para ayudar a manejar y hacer estos cambios. Cuando escribimos cambios en las configuraciones de _Terraform_, este creará un plan de ejecución que solo modifica lo que sea necesario para alcanzar el estado deseado.
+La infraestructura está en constante evolución, y _Terraform_ fue hecho para
+ayudar a manejar y hacer estos cambios. Cuando escribimos cambios en las
+configuraciones de _Terraform_, este creará un plan de ejecución que solo
+modifica lo que sea necesario para alcanzar el estado deseado.
 
-Al usar _Terraform_ para hacer cambios en la infraestructura, podemos controlar no solo las versiones de la configuración, sino tambien el estado, de tal manera que podamos ver cómo la infraestructura evoluciona durante el tiempo.
+Al usar _Terraform_ para hacer cambios en la infraestructura, podemos controlar
+no solo las versiones de la configuración, sino tambien el estado, de tal
+manera que podamos ver cómo la infraestructura evoluciona durante el tiempo.
 
 ==== Pre requisitos
 
-Esta sección asume que se realizaron los pasos previos en esta misma obra, si no, debemos crear un directorio llamado `iac-libro-aws-instancia` y pegamos el siguiente código en un archivo llamado `ejemplo.tf`.
+Esta sección asume que se realizaron los pasos previos en esta misma obra, si
+no, debemos crear un directorio llamado `iac-libro-aws-instancia` y pegamos el
+siguiente código en un archivo llamado `ejemplo.tf`.
 
 [source,bash]
 ----
@@ -503,11 +649,14 @@ include::{sourcedir}/cap003/ejemplo.tf[]
 
 ==== Configuración
 
-Ahora actualizaremos el `ami` de nuestra instancia. Cambiemos el recurso `aws_instance.ejemplo` debajo del bloque de proveedor en `ejemplo.tf` reemplazando el identificador del _AMI_ por uno nuevo.
+Ahora actualizaremos el `ami` de nuestra instancia. Cambiemos el recurso
+`aws_instance.ejemplo` debajo del bloque de proveedor en `ejemplo.tf`
+reemplazando el identificador del _AMI_ por uno nuevo.
 
 [TIP]
 ====
-El siguiente código, está en formato _diff_ para darnos en contexto qué debemos cambiar en la configuración
+El siguiente código, está en formato _diff_ para darnos en contexto qué debemos
+cambiar en la configuración
 ====
 
 [source,bash]
@@ -519,11 +668,14 @@ resource "aws_instance" "ejemplo" {
 }
 ----
 
-Esto hará el cambio del _AMI_ a Ubuntu 16.04. Las configuraciones de _Terraform_ están diseñadas para modificarse directamente y sabrá qué tendrá que destruir la antigua instancia y crear una nueva.
+Esto hará el cambio del _AMI_ a Ubuntu 16.04. Las configuraciones de
+_Terraform_ están diseñadas para modificarse directamente y sabrá qué tendrá
+que destruir la antigua instancia y crear una nueva.
 
 ==== Aplicación de los cambios.
 
-Después de cambiar la configuración, corremos `terraform apply` de nuevo para ver cómo _Terraform_ aplicará los cambios a los recursos existentes.
+Después de cambiar la configuración, corremos `terraform apply` de nuevo para
+ver cómo _Terraform_ aplicará los cambios a los recursos existentes.
 
 [source,bash]
 ----

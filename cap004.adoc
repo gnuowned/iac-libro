@@ -1,15 +1,32 @@
 == Capítulo 4. Introducción a Packer
 
 
-Packer es una herramienta de creación de imágenes de código abierto, escrita en Go. Packer también forma parte del stack de *_Hashicorp_*. Este nos permite crear imágenes de máquinas idénticas, para múltiples plataformas de destino desde una única fuente de configuración, lo que facilita la gestión de la configuración y el aprovisionamiento de la infraestructura. Packer es relativamente rápido de aprender y fácil de automatizar. Cuando se usa en combinación con herramientas de administración de configuración, se pueden crear imágenes complejas y totalmente funcionales con software preinstalado y preconfigurado.
+Packer es una herramienta de creación de imágenes de código abierto, escrita en
+Go. Packer también forma parte del stack de *_Hashicorp_*. Este nos permite
+crear imágenes de máquinas idénticas, para múltiples plataformas de destino
+desde una única fuente de configuración, lo que facilita la gestión de la
+configuración y el aprovisionamiento de la infraestructura. Packer es
+relativamente rápido de aprender y fácil de automatizar. Cuando se usa en
+combinación con herramientas de administración de configuración, se pueden
+crear imágenes complejas y totalmente funcionales con software preinstalado y
+preconfigurado.
 
-Una imagen de máquina es una unidad estática que contiene un sistema operativo preconfigurado y un software instalado. Podemos usar imágenes para clonar o crear nuevos hosts. Las imágenes ayudan a acelerar el proceso de construcción y despliegue de nueva infraestructura. Estas existen en muchos formatos, específicos para diversas plataformas y entornos de implementación.
+Una imagen de máquina es una unidad estática que contiene un sistema operativo
+preconfigurado y un software instalado. Podemos usar imágenes para clonar o
+crear nuevos hosts. Las imágenes ayudan a acelerar el proceso de construcción y
+despliegue de nueva infraestructura. Estas existen en muchos formatos,
+específicos para diversas plataformas y entornos de implementación.
 
-Packer es compatible con Linux, Windows y Mac OS X. También es compatible con una amplia variedad de formatos de imagen cmo Amazon EC2, CloudStack, DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox, VMware y más. También cuenta con integraciones para otras herramientas, como *_Ansible_* y *_Vagrant_*.
+Packer es compatible con Linux, Windows y Mac OS X. También es compatible con
+una amplia variedad de formatos de imagen cmo Amazon EC2, CloudStack,
+DigitalOcean, Docker, Google Compute Engine, Microsoft Azure, QEMU, VirtualBox,
+VMware y más. También cuenta con integraciones para otras herramientas, como
+*_Ansible_* y *_Vagrant_*.
 
 [NOTE]
 ====
-Esta introducción está basada en la documentación oficial de Hashicorp <<intro_packer>>.
+Esta introducción está basada en la documentación oficial de Hashicorp
+<<intro_packer>>.
 ====
 
 Código Ejemplo de plantilla de Packer para crear una imagen para AWS
@@ -52,59 +69,110 @@ Código Ejemplo de plantilla de Packer para crear una imagen para AWS
 Algunas de las características más importantes de _Packer_ son:
 
 
-* *Rápido despliegue de infraestructura:* las imágenes de Packer permiten lanzar máquinas completamente configuradas y aprovisionadas en segundos. Esto beneficia también a los ambientes de desarrollo, ya que se pueden crear Boxes de Vagrant con Packer, aprovisionadas de la misma manera que en producción, lo que mantiene la paridad.
-* *Detección anticipada de problemas:* Packer instala y configura el software de una máquina en el momento en que se crea la imagen. Si hay errores en este proceso, se detectarán a tiempo en las fases de construcción de un flujo o _pipeline_ de CI/CD en lugar de descubrirlos cuando inicie el entorno.
-* *Basado en constructores para múltiples formatos de imagen:* los constructores o _builders_ leen la configuración y la usan para ejecutar y generar una imagen de máquina virtual. Son constructores: VirtualBox, VMware y Amazon EC2 y más. footnote:[https://www.packer.io/docs/builders]. Los constructores son el equivalente a los proveedores de Terraform.
-* *Portabilidad de entornos:* ya que Packer puede crear imágenes idénticas para múltiples plataformas,es posible ejecutar el entorno de producción en AWS,el entorno de  QA en una nube privada como OpenStack y los entornos de desarrollo en Vagrant.
-* *Soporte para multiples aprovisionadores:* los _provisioners_  son componentes de Packer que instalan y configuran software dentro de una máquina antes de que esta se convierta en una imagen estática. Su principal objetivo es asegurarse que la imagen contenga software útil. Los aprovisionadores de ejemplo incluyen scripts de shell, Ansible, etc. footnote:[https://www.packer.io/docs/provisioners]
+* *Rápido despliegue de infraestructura:* las imágenes de Packer permiten
+  lanzar máquinas completamente configuradas y aprovisionadas en segundos. Esto
+  beneficia también a los ambientes de desarrollo, ya que se pueden crear Boxes
+  de Vagrant con Packer, aprovisionadas de la misma manera que en producción,
+  lo que mantiene la paridad.
+* *Detección anticipada de problemas:* Packer instala y configura el software
+  de una máquina en el momento en que se crea la imagen. Si hay errores en este
+  proceso, se detectarán a tiempo en las fases de construcción de un flujo o
+  _pipeline_ de CI/CD en lugar de descubrirlos cuando inicie el entorno.
+* *Basado en constructores para múltiples formatos de imagen:* los
+  constructores o _builders_ leen la configuración y la usan para ejecutar y
+  generar una imagen de máquina virtual. Son constructores: VirtualBox, VMware y
+  Amazon EC2 y más. footnote:[https://www.packer.io/docs/builders]. Los
+  constructores son el equivalente a los proveedores de Terraform.
+* *Portabilidad de entornos:* ya que Packer puede crear imágenes idénticas para
+  múltiples plataformas,es posible ejecutar el entorno de producción en AWS,el
+  entorno de  QA en una nube privada como OpenStack y los entornos de desarrollo
+  en Vagrant.
+* *Soporte para multiples aprovisionadores:* los _provisioners_  son
+  componentes de Packer que instalan y configuran software dentro de una máquina
+  antes de que esta se convierta en una imagen estática. Su principal objetivo
+  es asegurarse que la imagen contenga software útil. Los aprovisionadores de
+  ejemplo incluyen scripts de shell, Ansible, etc.
+  footnote:[https://www.packer.io/docs/provisioners]
 
 === Casos de uso
 
-Construir imágenes es tedioso. Es normalmente un proceso manual y por lo tanto, es propenso a errores. Packer puede automatizar la creación de imágenes e integrarse bien con herramientas de gestión de configuraciones como Ansible. Packer permite crear pipelines para construir e implementar imágenes, lo que a su vez nos permite producir imágenes consistentes y repetibles.
+Construir imágenes es tedioso. Es normalmente un proceso manual y por lo tanto,
+es propenso a errores. Packer puede automatizar la creación de imágenes e
+integrarse bien con herramientas de gestión de configuraciones como Ansible.
+Packer permite crear pipelines para construir e implementar imágenes, lo que a
+su vez nos permite producir imágenes consistentes y repetibles.
 
-Estos son casos de uso aplicados en la industria: footnote:[https://www.packer.io/intro/use-cases]
+Estos son casos de uso aplicados en la industria:
+footnote:[https://www.packer.io/intro/use-cases]
 
 ==== Consistencia ambiental
-¿Tienes una infraestructura compleja, con numerosos entornos que abarcan desarrollo, pruebas, _staging_ y producción? Packer es ideal para estandarizar esos entornos. Como admite numerosas plataformas de destino, puede crear imágenes estándar para todo tipo de plataformas.
+¿Tienes una infraestructura compleja, con numerosos entornos que abarcan
+desarrollo, pruebas, _staging_ y producción? Packer es ideal para estandarizar
+esos entornos. Como admite numerosas plataformas de destino, puede crear
+imágenes estándar para todo tipo de plataformas.
 
-Por ejemplo, un equipo de seguridad puede usar Packer para crear imágenes que luego se comparten con otros grupos para proporcionar el “hardening” de base que para imponer estándares entre equipos.
+Por ejemplo, un equipo de seguridad puede usar Packer para crear imágenes que
+luego se comparten con otros grupos para proporcionar el “hardening” de base
+que para imponer estándares entre equipos.
 
 ==== Entrega continua
-Packer se integra bien con las herramientas de infraestructura existentes. Se puede agregar en un pipeline de implementación. Es decir, parte del pipeline será crear la imagen. Un ejemplo de esto es la fase _Bake_ de _Spinnaker_ footnote:[https://spinnaker.io/setup/bakery/#packer-templates].
+Packer se integra bien con las herramientas de infraestructura existentes. Se
+puede agregar en un pipeline de implementación. Es decir, parte del pipeline
+será crear la imagen. Un ejemplo de esto es la fase _Bake_ de _Spinnaker_
+footnote:[https://spinnaker.io/setup/bakery/#packer-templates].
 
-Packer puede crear imágenes de Amazon Machine Images (AMI), después Terraform puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar Ansible ( periódicamente) para proporcionar la configuración final y mantener nuestros hosts configurados correctamente.
+Packer puede crear imágenes de Amazon Machine Images (AMI), después Terraform
+puede usar esas AMI cuando se crean hosts y servicios y podemos ejecutar
+Ansible ( periódicamente) para proporcionar la configuración final y mantener
+nuestros hosts configurados correctamente.
 
-Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un host que no funciona correctamente, el proceso es rápido y consistente. Nuestra infraestructura se vuelve desechable, reemplazable y repetible. Es decir, manejamos un enfoque de infraestructura inmutable.
+Esto significa que si necesitamos un nuevo host o tenemos que reemplazar un
+host que no funciona correctamente, el proceso es rápido y consistente. Nuestra
+infraestructura se vuelve desechable, reemplazable y repetible. Es decir,
+manejamos un enfoque de infraestructura inmutable.
 
-Los beneficios de una infraestructura inmutable incluyen más consistencia y confiabilidad en la infraestructura y un proceso de implementación más simple y predecible. Mitiga o previene por completo los problemas que son comunes en las infraestructuras mutables, como las diferencias de configuración.
+Los beneficios de una infraestructura inmutable incluyen más consistencia y
+confiabilidad en la infraestructura y un proceso de implementación más simple y
+predecible. Mitiga o previene por completo los problemas que son comunes en las
+infraestructuras mutables, como las diferencias de configuración.
 
 === Instalación de _Packer_
 
-Instalaremos el binario de Packer en nuestro equipo personal para ejecutar la construcción de imagenes en la nube de AWS. Packer se puede instalar de las siguientes formas:
+Instalaremos el binario de Packer en nuestro equipo personal para ejecutar la
+construcción de imagenes en la nube de AWS. Packer se puede instalar de las
+siguientes formas:
 
-- Usando un binario precompilado. 
-- Construyendo desde la fuente. 
+- Usando un binario precompilado.
+- Construyendo desde la fuente.
 
-La forma estandar es usar los binarios que Hashicorp lanza. Este método se recomienda para la mayoría de los usuarios.
+La forma estandar es usar los binarios que Hashicorp lanza. Este método se
+recomienda para la mayoría de los usuarios.
 
 ==== Instalación Manual
 
-Para la instalación manual de _Packer_, necesitamos encontrar el paquete apropiado footnote:[https://www.packer.io/downloads] para nuestro sistema operativo y bajarlo, este será un archivo _zip_.
+Para la instalación manual de _Packer_, necesitamos encontrar el paquete
+apropiado footnote:[https://www.packer.io/downloads] para nuestro sistema
+operativo y bajarlo, este será un archivo _zip_.
 
 Una vez que se haya descargado, procederemos a descomprimir el archivo _zip_.
 
-Finalmente, nos aseguraremos de que `packer` se encuentre disponible en nuestro `PATH`. Esto se realiza de manera diferente, dependiendo el sistema operativo.
+Finalmente, nos aseguraremos de que `packer` se encuentre disponible en nuestro
+`PATH`. Esto se realiza de manera diferente, dependiendo el sistema operativo.
 
 ===== Mac o Linux
 
-Obtenemos la lista de rutas que están disponibles en la variable de entorno `PATH`
+Obtenemos la lista de rutas que están disponibles en la variable de entorno
+`PATH`
 
 [source,batch]
 ----
 echo $PATH
 ----
 
-Movemos el binario de _Packer_ a uno de las rutas listadas. Este comando asume que el binario se encuentra en el archivo de descargas y que `PATH` contiene `/usr/local/bin`, personaliza en caso de las rutas en tu sistema operativo sean diferentes.
+Movemos el binario de _Packer_ a uno de las rutas listadas. Este comando asume
+que el binario se encuentra en el archivo de descargas y que `PATH` contiene
+`/usr/local/bin`, personaliza en caso de las rutas en tu sistema operativo sean
+diferentes.
 
 [source,batch]
 ----
@@ -113,13 +181,17 @@ mv ~/Downloads/packer /usr/local/bin/
 
 ==== Windows
 
-En la siguiente dirección de internet, podemos encontrar las instrucciones exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica: `https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
+En la siguiente dirección de internet, podemos encontrar las instrucciones
+exactas para modificar el `PATH` en _Windows_ através de la interfaz gráfica:
+`https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows`
 
 ==== Instalación con _Homebrew_ en _MacOS_
 
-_Homebrew_ es un manejador de paquetes de fuente abierta para el sistema operativo _MacOS_. Instala la _formula_ oficial de _Packer_ desde la terminal.
+_Homebrew_ es un manejador de paquetes de fuente abierta para el sistema
+operativo _MacOS_. Instala la _formula_ oficial de _Packer_ desde la terminal.
 
-Primero, installamos el _tap_ de _HashiCorp_, un repositorio para todos los paquetes de _Homebrew_ de la compañia:
+Primero, installamos el _tap_ de _HashiCorp_, un repositorio para todos los
+paquetes de _Homebrew_ de la compañia:
 
 [source,batch]
 ----
@@ -142,7 +214,8 @@ brew upgrade hashicorp/tap/packer
 
 ==== Instalación con _Chocolatey_ en _Windows_
 
-_Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_. Installamos el paquete de _Packer_ desde la linea de comandos.
+_Chocolatey_ es un manejador de paquetes de codigo abierto para _Windows_.
+Installamos el paquete de _Packer_ desde la linea de comandos.
 
 [source,batch]
 ----
@@ -184,7 +257,8 @@ Instalamos `yum-config-manager` para manejar repositorios.
 sudo yum install -y yum-utils
 ----
 
-Usamos `yum-config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+Usamos `yum-config-manager` para agregar el repositorio oficial de _HachiCorp_
+para _Linux_
 
 [source,batch]
 ----
@@ -207,7 +281,8 @@ Instalamos `dnf config-manager` para manejar repositorios.
 sudo dnf install -y dnf-plugins-core
 ----
 
-Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_ para _Linux_
+Usamos `dnf config-manager` para agregar el repositorio oficial de _HachiCorp_
+para _Linux_
 
 [source,batch]
 ----
@@ -241,30 +316,47 @@ Available commands are:
 
 ----
 
-Cualquier sub comando despues de `packer -help` permite aprender más sobre el mismo.
+Cualquier sub comando despues de `packer -help` permite aprender más sobre el
+mismo.
 
 [source,batch]
 ----
 packer -help build
 ----
 
-Con esto finalizamos la instalación de _Packer_ y estamos listos para empezar a construir imagenes en la nube.
+Con esto finalizamos la instalación de _Packer_ y estamos listos para empezar a
+construir imagenes en la nube.
 
 === Construcción de imágenes
 
 Con _Packer_ instalado, estamos listos para crear nuestra primer imagen.
 
-Packer usa una plantilla en formato JSON para definir una imagen. Hay tres secciones principales en el archivo: constructores, aprovisionadores y postprocesamiento.
+Packer usa una plantilla en formato JSON para definir una imagen. Hay tres
+secciones principales en el archivo: constructores, aprovisionadores y
+postprocesamiento.
 
-*Los constructores* son los que determinan qué tipo de imagen vamos crear. Aquí es donde le decimos a Packer que queremos una imagen para AWS en formato AMI o una para Virtualbox en formato OVF.
+*Los constructores* son los que determinan qué tipo de imagen vamos crear. Aquí
+es donde le decimos a Packer que queremos una imagen para AWS en formato AMI o
+una para Virtualbox en formato OVF.
 
-No estamos limitados a un solo constructor. Si necesitamos una imagen idéntica para usarla en AWS y Vagrant, definimos varios constructores. 
+No estamos limitados a un solo constructor. Si necesitamos una imagen idéntica
+para usarla en AWS y Vagrant, definimos varios constructores.
 
-*Los aprovisionadores* son la siguiente sección de un archivo JSON de Packer. Una vez instalado el sistema operativo, se invoca a los aprovisionadores para configurar el sistema. 
+*Los aprovisionadores* son la siguiente sección de un archivo JSON de Packer.
+Una vez instalado el sistema operativo, se invoca a los aprovisionadores para
+configurar el sistema.
 
-Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos hasta el uso de playbooks de Ansible.Lo importante para mantener un enfoque DevOps es usar los mismos scripts que usamos en un servidor de producción pero aplicados a un entorno de desarrollo local con Vagrant. De esta manera el entorno de Desarrollo y Producción mantendrán paridad.
+Hay una gran cantidad de opciones disponibles, desde scripts de shell básicos
+hasta el uso de playbooks de Ansible.Lo importante para mantener un enfoque
+DevOps es usar los mismos scripts que usamos en un servidor de producción pero
+aplicados a un entorno de desarrollo local con Vagrant. De esta manera el
+entorno de Desarrollo y Producción mantendrán paridad.
 
-Por último, están *los postprocesadores*. Estos son opcionales. Por ejemplo, son necesarios para crear Boxes de Vagrant. Estas se generan tomando una imagen genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant. Otras opciones comúnmente usadas en los postprocesadores son la compresión de la imagen.
+Por último, están *los postprocesadores*. Estos son opcionales. Por ejemplo,
+son necesarios para crear Boxes de Vagrant. Estas se generan tomando una imagen
+genérica en OVF para Virtualbox y empaquetándola como una imagen de Vagrant.
+Otras opciones comúnmente usadas en los postprocesadores son la compresión de
+la imagen.
 
 
 ==== Pre requisitos
@@ -276,13 +368,18 @@ Para continuar, necesitamos:
 * Las credenciales de _AWS_ configuradas localmente.
 * Crear una llave SSH
 
-Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y configuración de una cuenta de Amazon Web Services]
+Esto está descrito en el Apéndice xref:apendice001.adoc[Creación y
+configuración de una cuenta de Amazon Web Services]
 
 ===== Crear llave SSH
 
-Crearemos una llave  SSH local para conectarnos con el usuario terraform que crearemos en la instancia.
+Crearemos una llave  SSH local para conectarnos con el usuario terraform que
+crearemos en la instancia.
 
-Genera una nueva clave SSH llamada `tf-packer`. El argumento proporcionado con la bandera `-f` crea la clave en el directorio actual y crea dos archivos llamados `tf-packer` y `tf-packer.pub`. Cambie la dirección de correo electrónico.
+Genera una nueva clave SSH llamada `tf-packer`. El argumento proporcionado con
+la bandera `-f` crea la clave en el directorio actual y crea dos archivos
+llamados `tf-packer` y `tf-packer.pub`. Cambie la dirección de correo
+electrónico.
 
 ===== Línea de comandos de Mac o Linux
 
@@ -295,11 +392,15 @@ Cuando se  solicite, presiona Intro para dejar la contraseña en blanco.
 
 ===== Windows con PuTTY
 
-Si estás en una máquina con Windows, usa Putty para generar claves SSH siguiendo las instrucciones del siguiente enlace: https://www.ssh.com/ssh/putty/windows/puttygen/.
+Si estás en una máquina con Windows, usa Putty para generar claves SSH
+siguiendo las instrucciones del siguiente enlace:
+https://www.ssh.com/ssh/putty/windows/puttygen/.
 
 ==== Escribir plantillas de Packer
 
-A continuación crearemos una imagen con Packer en AWS y aprovisionaremos software en ella. Posteriormente usaremos esta imagen con Terraform para crear infraestructura.
+A continuación crearemos una imagen con Packer en AWS y aprovisionaremos
+software en ella. Posteriormente usaremos esta imagen con Terraform para crear
+infraestructura.
 
 Creamos un directorio llamado  `iac-libro-packer`
 [source,bash]
@@ -373,7 +474,11 @@ Creamos la plantilla `imagen.json` de Packer con la siguiente estructura.
 ----
 
 
-El bloque de *variables*  determina las variables de entorno que Packer utilizará para la cuenta de AWS. Esta región debe coincidir con la región donde Terraform implementará la infraestructura, por lo que si la personalizas, tendrás que  personalizar la configuración de Terraform para que coincida (más adelante).
+El bloque de *variables*  determina las variables de entorno que Packer
+utilizará para la cuenta de AWS. Esta región debe coincidir con la región donde
+Terraform implementará la infraestructura, por lo que si la personalizas,
+tendrás que  personalizar la configuración de Terraform para que coincida (más
+adelante).
 
 [source,json]
 ----
@@ -385,7 +490,9 @@ El bloque de *variables*  determina las variables de entorno que Packer utilizar
 }
 ----
 
-El bloque de *constructores* crea una imagen en formato AMI denominada imagen-iac-libro-{{timestamp}} que se basa en una imagen t2.micro de Ubuntu con Elastic Block Storage (EBS).
+El bloque de *constructores* crea una imagen en formato AMI denominada
+imagen-iac-libro-{{timestamp}} que se basa en una imagen t2.micro de Ubuntu con
+Elastic Block Storage (EBS).
 
 [source,json]
 ----
@@ -413,11 +520,15 @@ El bloque de *constructores* crea una imagen en formato AMI denominada imagen-ia
 ]
 ----
 
-Finalmente, el bloque de *aprovisionadores* aprovisiona las instancias con scripts o archivos específicos.
+Finalmente, el bloque de *aprovisionadores* aprovisiona las instancias con
+scripts o archivos específicos.
 
-El primer aprovisionador es un aprovisionador de tipo de archivo y copia la clave SSH pública recién creada en un directorio temporal de la imagen.
+El primer aprovisionador es un aprovisionador de tipo de archivo y copia la
+clave SSH pública recién creada en un directorio temporal de la imagen.
 
-El segundo aprovisionador es uden tipo shell que apunta a la ruta relativa a un script de bash. Packer utiliza estos aprovisionadores para personalizar la imagen.
+El segundo aprovisionador es uden tipo shell que apunta a la ruta relativa a un
+script de bash. Packer utiliza estos aprovisionadores para personalizar la
+imagen.
 
 [source,json]
 ----
@@ -478,7 +589,8 @@ sudo chmod 600 /home/terraform/.ssh/authorized_keys
 sudo chown -R terraform /home/terraform/.ssh
 sudo usermod --shell /bin/bash terraform
 
-# Crear el path GOPATH para el usuario de  Terraform y descargar la aplicación web desde github
+# Crear el path GOPATH para el usuario de  Terraform y descargar la aplicación
+web desde github
 
 sudo -H -i -u terraform -- env bash << EOF
 whoami
@@ -494,11 +606,14 @@ EOF
 ----
 
 
-Este script instala las dependencias necesarias, agrega el usuario terraform al grupo sudo, instala la clave SSH creada anteriormente y descarga una aplicación web  en GoLang de muestra.
+Este script instala las dependencias necesarias, agrega el usuario terraform al
+grupo sudo, instala la clave SSH creada anteriormente y descarga una aplicación
+web  en GoLang de muestra.
 
 ==== Construir la imagen
 
-Ejecuta el comando de construcción de Packer pasando como argumentola plantilla de imagen.
+Ejecuta el comando de construcción de Packer pasando como argumentola plantilla
+de imagen.
 
 Nos cambiamos al directorio `imagenes`
 [source,bash]
@@ -553,15 +668,19 @@ Build 'amazon-ebs' finished.
 us-east-1: ami-06cb92a18a30fec16
 ----
 
-La última línea de la salida es la ID de AMI que debemos pasar a la configuración de Terraform en el siguiente paso.
+La última línea de la salida es la ID de AMI que debemos pasar a la
+configuración de Terraform en el siguiente paso.
 
 
 === Desplegar imagenes de Packer con Terraform
 
 
-La AMI es el artefacto resultant de la ejecución de Packer y está disponible en la cuenta de AWS en la sección Imágenes de EC2. Puedes visitar la consola web de AWS para ver este ID de AMI nuevamente.
+La AMI es el artefacto resultant de la ejecución de Packer y está disponible en
+la cuenta de AWS en la sección Imágenes de EC2. Puedes visitar la consola web
+de AWS para ver este ID de AMI nuevamente.
 
-Para utilizar esta AMI en el entorno de Terraform, creamos un diretorio llamado `instancias`
+Para utilizar esta AMI en el entorno de Terraform, creamos un diretorio llamado
+`instancias`
 [source,bash]
 ----
 $ mkdir instancias
@@ -663,9 +782,13 @@ output "id" {
 
 ----
 
-Edita el atributo ami con el ID de AMI que se generó de la construcción de Packer.
+Edita el atributo ami con el ID de AMI que se generó de la construcción de
+Packer.
 
-Crea un nuevo archivo llamado `terraform.tfvars` y agrega la región donde se almacena la imagen como variable. Si personalizaste la región que te dio a Packer, debes cambiar esta región para que coincida, o Terraform no podrá acceder a la imagen.
+Crea un nuevo archivo llamado `terraform.tfvars` y agrega la región donde se
+almacena la imagen como variable. Si personalizaste la región que te dio a
+Packer, debes cambiar esta región para que coincida, o Terraform no podrá
+acceder a la imagen.
 
 [source,bash]
 ----
@@ -679,20 +802,26 @@ Guarda este archivo y luego inicializa y aplica la configuración de Terraform.
 $ terraform init && terraform apply
 ----
 
-Escriba sí cuando se  solicite crear la instancia. El resultado final es la dirección IP de la instancia. 
+Escriba sí cuando se  solicite crear la instancia. El resultado final es la
+dirección IP de la instancia.
 
-La instancia ya contiene la llave SSH para realizar la conexión , porque terraform usó la AMI que se construyó previamente con Packer. El uso de una AMI construida con Packer hace que la implementación de instancias masivas sea más rápida y coherente que la configuración manual de las instancias.
+La instancia ya contiene la llave SSH para realizar la conexión , porque
+terraform usó la AMI que se construyó previamente con Packer. El uso de una AMI
+construida con Packer hace que la implementación de instancias masivas sea más
+rápida y coherente que la configuración manual de las instancias.
 
 ==== Verificar la instancia
 
-Conectate a la instancia a través de SSH con el atributo obteniendo la ip del atributo `aws_instance.web.public_ip` 
+Conectate a la instancia a través de SSH con el atributo obteniendo la ip del
+atributo `aws_instance.web.public_ip`
 
 [source,bash]
 ----
 $ ssh terraform@$(echo "aws_instance.web.public_ip" | terraform console) -i ../tf-packer
 ----
 
-Ahora tienes acceso SSH a tus instancias de AWS sin crear una clave SSH en AWS. Esto es útil si tu organización mantiene pares de claves fuera de AWS.
+Ahora tienes acceso SSH a tus instancias de AWS sin crear una clave SSH en AWS.
+Esto es útil si tu organización mantiene pares de claves fuera de AWS.
 
 Navega hasta el directorio de Go.
 [source,bash]
@@ -704,12 +833,14 @@ Inicie la aplicación web demo.
 ----
 $ go run webapp.go
 ----
-En el navegador web, navega hasta la dirección IP de la instancia y el puerto 8080 para ver la aplicación que implementaste.
+En el navegador web, navega hasta la dirección IP de la instancia y el puerto
+8080 para ver la aplicación que implementaste.
 
 
 ==== Destruye la instancia
 
-Evita cargos innecesarios en tu cuenta de AWS destruyendo su instancia en Terraform.
+Evita cargos innecesarios en tu cuenta de AWS destruyendo su instancia en
+Terraform.
 [source,bash]
 ----
 $ terraform destruir
@@ -717,4 +848,4 @@ $ terraform destruir
 
 Escribe sí cuando se  solicite en la terminal la confirmación.
 
-Esto no destruirá la imagen de Packer. 
+Esto no destruirá la imagen de Packer.
