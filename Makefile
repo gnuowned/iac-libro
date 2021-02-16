@@ -3,7 +3,7 @@ SOURCES=$(wildcard *.adoc)
 MAIN_ADOC=IaC-libro.adoc
 OUT_HTML=html/IaC-libro.html
 OUT_PDF=pdf/IaC-libro.pdf
-OUT_EPUB=pdf/output/IaC-libro.epub
+OUT_EPUB=epub/IaC-libro.epub
 
 # ASCIIDOC Container Image
 ACI=asciidoctor/docker-asciidoctor
