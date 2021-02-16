@@ -34,3 +34,16 @@ podman-pdf:
 
 podman-epub:
 	podman run --rm -i -v ${PWD}:/documents/:Z ${ACI} make epub
+
+fold: $(SOURCES)
+	@echo "CUIDADO:"; \
+	echo "         Este comando puede romper líneas de código de ejemplo";\
+	echo "         mayores a 80 caracterses." ;\
+	echo ;\
+	echo "  Para salir oprima Control-C o enter para continuar"; \
+	read teclado
+	for file in $^ ; do \
+		fold --spaces --width=80 $${file} > $${file}.tmp ; \
+		mv $${file}.tmp  $${file}; \
+		sed -i 's/[[:space:]]*$$//' $${file}; \
+	done
