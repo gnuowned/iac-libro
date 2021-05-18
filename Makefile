@@ -35,6 +35,18 @@ podman-pdf:
 podman-epub:
 	podman run --rm -i -v ${PWD}:/documents/:Z ${ACI} make epub
 
+docker:
+	docker run --rm -i --user="$(id -u):$(id -g)" --net=none -v ${PWD}:/documents/ ${ACI} make
+
+docker-html:
+	docker run --rm -i --user="$(id -u):$(id -g)" --net=none -v ${PWD}:/documents/ ${ACI} make html
+
+docker-pdf:
+	docker run --rm -i --user="$(id -u):$(id -g)" --net=none -v ${PWD}:/documents/ ${ACI} make pdf
+
+docker-epub:
+	docker run --rm -i --user="$(id -u):$(id -g)" --net=none -v ${PWD}:/documents/ ${ACI} make epub
+
 fold: $(SOURCES)
 	@echo "CUIDADO:"; \
 	echo "         Este comando puede romper líneas de código de ejemplo";\
